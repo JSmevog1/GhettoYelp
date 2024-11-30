@@ -1,0 +1,1 @@
+Ghetto Yelp is an application that allows users to view and create reviews and ratings for restaurants. Users will be able to add and view reviews to preexisting restaurants, while admins will be able to add restaurants to the pool.
