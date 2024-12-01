@@ -3,6 +3,8 @@ package com.example.ghettoyelp.Database;
 import android.app.Application;
 
 
+import com.example.ghettoyelp.Database.DAOs.UserDAO;
+
 import java.util.ArrayList;
 
 /**
@@ -24,6 +26,7 @@ public class UserRepository {
     // CONSTRUCTOR
     public UserRepository(Application application){
         MainDatabase database = MainDatabase.getDatabase(application);
+        userDAO = database.userDAO();
     }
 
     // METHODS to READ and WRITE to DAO
