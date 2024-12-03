@@ -20,12 +20,12 @@ public class ReviewsRepository {
     // VARIABLES for DAO
     // TODO: wait for entity class - Review to be created
     private final ReviewDAO reviewDAO;
-    private ArrayList<User> allUsers;
+    private ArrayList<Review> allReviews;
 
     // CONSTRUCTOR
     public ReviewsRepository(Application application){
         MainDatabase database = MainDatabase.getDatabase(application);
-        reviewDAO = database.userDAO();
+        reviewDAO = database.reviewDAO();
     }
 
     // METHODS to READ and WRITE to DAO
