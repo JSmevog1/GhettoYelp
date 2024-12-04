@@ -5,4 +5,8 @@
     <string name="view_reviews">View Reviews</string>
     <string name="view_all_users">View All Users</string>
     <string name="add_remove_restaurants">Add/Remove\nRestaurants</string>
+    <string name="welcome">Welcome!</string>
+    <string name="add_review">Add Review</string>
+    <string name="previous_reviews">Previous Reviews</string>
+    <string name="logout">Logout</string>
 </resources>
