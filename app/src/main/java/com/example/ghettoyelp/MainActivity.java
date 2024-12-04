@@ -5,11 +5,14 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,23 @@ public class MainActivity extends AppCompatActivity {
                 logout();
             }
         });
+
+        if (user.isAdmin()){
+            binding.AdminViewAllUsersButton.setVisibility(View.VISIBLE);
+            binding.AdminViewAllUsersButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adminViewAllUsers();
+                }
+            });
+            binding.AdminAddRemoveRestaurantsButton.setVisibility(View.VISIBLE);
+            binding.AdminAddRemoveRestaurantsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adminAddRemoveRestaurants();
+                }
+            });
+        }
     }
 
 
@@ -49,5 +69,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout() {
+    }
+
+    private void adminViewAllUsers(){
+
+    }
+
+    private void adminAddRemoveRestaurants(){
+
     }
 }
