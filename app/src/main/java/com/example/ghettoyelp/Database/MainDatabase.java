@@ -67,7 +67,7 @@ public abstract class MainDatabase extends RoomDatabase {
             //Log.i(MainActivity.TAG,"DATABASE CREATED!");
             databaseExecutor.execute(()->{
                 UserDAO dao = INSTANCE.userDAO();
-                dao.deleteAll();
+                //dao.deleteAll();
                 // TODO: wait for entity class to be created
                 User admin = new User("admin1", "admin1");
                 admin.setAdmin(true);
