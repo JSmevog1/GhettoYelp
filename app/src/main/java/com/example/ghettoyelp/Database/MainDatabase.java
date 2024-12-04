@@ -11,6 +11,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.ghettoyelp.Database.DAOs.RestaurantDAO;
 import com.example.ghettoyelp.Database.DAOs.ReviewDAO;
 import com.example.ghettoyelp.Database.DAOs.UserDAO;
+import com.example.ghettoyelp.Database.Entities.Restaurant;
+import com.example.ghettoyelp.Database.Entities.Review;
 import com.example.ghettoyelp.Database.Entities.User;
 
 import java.util.concurrent.ExecutorService;
@@ -26,7 +28,7 @@ import java.util.concurrent.Executors;
  */
 
 // TODO: add entities: user, restaurant, reviews
-@Database(entities = {}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Restaurant.class, Review.class}, version = 1, exportSchema = false)
 public abstract class MainDatabase extends RoomDatabase {
     // name of the database tables
     private static final String DATABASE_NAME = "mainDatabase";
