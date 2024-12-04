@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GhettoYelp</string>
+    <string name="ghetto_yelp">Ghetto Yelp</string>
+    <string name="create_review">Create Review</string>
+    <string name="view_reviews">View Reviews</string>
+    <string name="view_all_users">View All Users</string>
+    <string name="add_remove_restaurants">Add/Remove\nRestaurants</string>
 </resources>
