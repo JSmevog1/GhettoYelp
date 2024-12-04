@@ -42,6 +42,28 @@
         app:layout_constraintTop_toBottomOf="@+id/addReviewButton" />
 
     <Button
+        android:layout_width="390dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/previousReviewsButton"
+        android:text="@string/view_all_users"
+        android:textSize="32sp"
+        android:id="@+id/AdminViewAllUsersButton"/>
+
+    <Button
+        android:layout_width="390dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminViewAllUsersButton"
+        android:text="@string/add_remove_restaurants"
+        android:textSize="32sp"
+        android:id="@+id/AdminAddRemoveRestaurantsButton"/>
+
+    <Button
         android:id="@+id/logoutButton"
         android:layout_width="390dp"
         android:layout_height="105dp"
@@ -50,6 +72,6 @@
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/previousReviewsButton" />
+        app:layout_constraintTop_toBottomOf="@+id/AdminAddRemoveRestaurantsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
