@@ -5,6 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.Database.MainDatabase;
 
 import java.util.List;
@@ -24,9 +25,10 @@ public interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);
 
+
     //@Query("SELECT * FROM " + MainDatabase.USER_TABLE + " ORDER BY username")
     // TODO: add method after entity class - User is created
 
-    //@Query("DELETE FROM " + MainDatabase.USER_TABLE)
-    // TODO: add method to remove all users from database
+    @Query("DELETE FROM " + MainDatabase.USER_TABLE)
+    void deleteAll();
 }

@@ -4,6 +4,7 @@ import android.app.Application;
 
 
 import com.example.ghettoyelp.Database.DAOs.UserDAO;
+import com.example.ghettoyelp.Database.Entities.User;
 
 import java.util.ArrayList;
 
