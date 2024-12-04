@@ -11,6 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.ghettoyelp.Database.DAOs.RestaurantDAO;
 import com.example.ghettoyelp.Database.DAOs.ReviewDAO;
 import com.example.ghettoyelp.Database.DAOs.UserDAO;
+import com.example.ghettoyelp.Database.Entities.User;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
