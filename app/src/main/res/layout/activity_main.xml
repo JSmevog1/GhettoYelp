@@ -8,12 +8,48 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/titleLandingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="@string/welcome"
+        android:textSize="42sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addReviewButton"
+        android:layout_width="390dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/add_review"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLandingTextView" />
+
+    <Button
+        android:id="@+id/previousReviewsButton"
+        android:layout_width="390dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/previous_reviews"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addReviewButton" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="390dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/logout"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/previousReviewsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

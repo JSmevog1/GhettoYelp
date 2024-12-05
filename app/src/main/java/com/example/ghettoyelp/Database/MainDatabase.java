@@ -69,9 +69,9 @@ public abstract class MainDatabase extends RoomDatabase {
                 UserDAO dao = INSTANCE.userDAO();
                 //dao.deleteAll();
                 // TODO: wait for entity class to be created
-                //User admin = new User("admin1", "admin1");
-                //admin.setAdmin(true);
-                //dao.insert(admin);
+                User admin = new User("admin1", "admin1");
+                admin.setAdmin(true);
+                dao.insert(admin);
             });
         }
     };
