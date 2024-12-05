@@ -11,13 +11,12 @@ import java.util.Objects;
 public class Review {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     private String username;
     private String review;
     private int rating;
 
-    public Review(String userName, String review, int rating) {
-        this.username = userName;
+    public Review(String username, String review, int rating) {
+        this.username = username;
         this.review = review;
         this.rating = rating;
     }
