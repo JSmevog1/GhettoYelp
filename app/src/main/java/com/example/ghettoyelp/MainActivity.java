@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private int loggedInUserId = LOGGED_OUT;  // the unique identifier tied to each user in the database
     private User user;  // The user logged in to the app
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,23 @@ public class MainActivity extends AppCompatActivity {
                 logout();
             }
         });
+
+        if (user.isAdmin()){
+            binding.AdminViewAllUsersButton.setVisibility(View.VISIBLE);
+            binding.AdminViewAllUsersButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adminViewAllUsers();
+                }
+            });
+            binding.AdminAddRemoveRestaurantsButton.setVisibility(View.VISIBLE);
+            binding.AdminAddRemoveRestaurantsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adminAddRemoveRestaurants();
+                }
+            });
+        }
     }
 
     //todo: complete login method
@@ -162,5 +181,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void logout() {
         startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+    }
+
+    private void adminViewAllUsers(){
+
+    }
+
+    private void adminAddRemoveRestaurants(){
+
     }
 }

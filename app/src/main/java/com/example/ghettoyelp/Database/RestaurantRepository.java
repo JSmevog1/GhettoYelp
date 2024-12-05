@@ -3,6 +3,7 @@ package com.example.ghettoyelp.Database;
 import android.app.Application;
 
 import com.example.ghettoyelp.Database.DAOs.RestaurantDAO;
+import com.example.ghettoyelp.Database.Entities.Restaurant;
 
 import java.util.ArrayList;
 
