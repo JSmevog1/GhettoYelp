@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 
 /**
  * @author Yui Nguyen
- * Last Update: Dec 4, 2024
+ * Last Update: Dec 4th, 2024
  * Description:
  *      Main database processor of the application
  *      Communicate between database (DAOs) and other files
