@@ -11,7 +11,7 @@ import com.example.ghettoyelp.Database.UserRepository;
 import java.util.List;
 
 public class ViewAllUserViewModel extends AndroidViewModel {
-    private UserRepository repository;
+    private final UserRepository repository;
 
     private final LiveData<List<User>> allUsers;
 
