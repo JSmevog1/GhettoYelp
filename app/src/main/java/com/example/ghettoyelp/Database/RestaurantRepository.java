@@ -6,6 +6,7 @@ import com.example.ghettoyelp.Database.DAOs.RestaurantDAO;
 import com.example.ghettoyelp.Database.Entities.Restaurant;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Yui Nguyen
@@ -27,6 +28,12 @@ public class RestaurantRepository {
     public RestaurantRepository(Application application){
         MainDatabase database = MainDatabase.getDatabase(application);
         restaurantDAO = database.restaurantDAO();
+    }
+
+    public void insertRestaurant(Restaurant newRestaurant) {
+    }
+
+    public List<Restaurant> getAllRestaurants() {
     }
 
     // METHODS to READ and WRITE to DAO
