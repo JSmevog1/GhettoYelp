@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private int loggedInUserId = LOGGED_OUT;  // the unique identifier tied to each user in the database
     private User user;  // The user logged in to the app
 
-    private User user;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
