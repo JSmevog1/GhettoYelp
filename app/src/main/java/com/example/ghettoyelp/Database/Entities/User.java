@@ -30,14 +30,14 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private List<Review> reviews;
+    //private List<Review> reviews;
     private int reviewsCount;
     private boolean isAdmin;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        reviews = new ArrayList<>();
+        //reviews = new ArrayList<>();
         reviewsCount = 0;
         isAdmin = false;
     }
@@ -47,12 +47,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && reviewsCount == user.reviewsCount && isAdmin == user.isAdmin && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(reviews, user.reviews);
+        return id == user.id && reviewsCount == user.reviewsCount && isAdmin == user.isAdmin && Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, reviews, reviewsCount, isAdmin);
+        return Objects.hash(id, username, password, reviewsCount, isAdmin);
     }
 
     public int getId() {
@@ -79,13 +79,13 @@ public class User {
         this.password = password;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
+//    public List<Review> getReviews() {
+//        return reviews;
+//    }
+//
+//    public void setReviews(List<Review> reviews) {
+//        this.reviews = reviews;
+//    }
 
     public int getReviewsCount() {
         return reviewsCount;

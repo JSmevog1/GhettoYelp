@@ -4,6 +4,8 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 
+import com.example.ghettoyelp.Database.Entities.Restaurant;
+
 /**
  * @author Yui Nguyen
  * Last Update: Nov 30, 2024
@@ -16,8 +18,8 @@ public interface RestaurantDAO {
     // TODO: wait for Restaurant entity class to be created
     // Method to add a new restaurant into database table
     // If there is any conflict, replace with a new one
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(ReviewDAO reviewDAO);
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    void insert(Restaurant restaurant);
 
     //@Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " ORDER BY ")
     // TODO: add method after entity class - Restaurant is created
