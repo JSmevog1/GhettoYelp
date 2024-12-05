@@ -7,6 +7,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ghettoyelp.Database.ReviewsRepository;
 import com.example.ghettoyelp.databinding.ActivityLoginBinding;
 
 /**
@@ -19,12 +20,16 @@ import com.example.ghettoyelp.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
+    private ReviewsRepository reviewsRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //todo: get user reviews from ReviewRepository
+        // reviewsRepository = ReviewsRepository.getRepository(getApplication);
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Factory method to create an Intent for starting the LoginActivity.
+     *
+     * @param context is the context used to create the Intent.
+     * @return an Intent configured to start the LoginActivity.
+     */
     static Intent loginIntentFactory(Context context){
         return new Intent(context, LoginActivity.class);
     }
