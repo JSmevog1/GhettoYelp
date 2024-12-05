@@ -8,7 +8,7 @@ import com.example.ghettoyelp.Database.Entities.Restaurant;
 
 /**
  * @author Yui Nguyen
- * Last Update: Nov 30, 2024
+ * Last Update: Dec 4th, 2024
  * Description:
  *      Data Access Object for Entity Class - Restaurant
  */
