@@ -32,6 +32,19 @@ public class UserRepository {
         userDAO = database.userDAO();
     }
 
+    // METHODS to ADD and DELETE from DAO
+    public void insertUser(User user){
+        MainDatabase.databaseExecutor.execute(()->{
+            userDAO.insert(user);
+        });
+    }
+
+    public void removeUser(User user){
+        MainDatabase.databaseExecutor.execute(()->{
+            userDAO.delete(user);
+        });
+    }
+
     // METHODS to READ and WRITE to DAO
     // Get all users
     public ArrayList<User> getAllUsers(){
@@ -50,6 +63,27 @@ public class UserRepository {
         }
         return null;
     }
+
+    public static UserRepository getRepository(Application application){
+        if(repository != null)
+            return repository;
+
+        Future<UserRepository> future = MainDatabase.databaseExecutor.submit(
+                new Callable<UserRepository>() {
+                    @Override
+                    public UserRepository call() throws Exception {
+                        return new UserRepository(application);
+                    }
+                }
+        );
+        try{
+            return future.get();
+        }  catch (InterruptedException | ExecutionException e) {
+            //Log.i(MainActivity.TAG, "Problem in the GymLogRepository");
+        }
+        return null;
+    }
+
 
     public User getUserByUsername(String username){
         Future<User> future = MainDatabase.databaseExecutor.submit(

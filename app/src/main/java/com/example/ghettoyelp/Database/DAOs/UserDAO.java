@@ -39,7 +39,7 @@ public interface UserDAO {
 
     // METHODS to delete user
     @Delete
-    void delete(Review review);
+    void delete(User user);
     @Query("DELETE FROM " + MainDatabase.USER_TABLE)
     void deleteAll();
 }

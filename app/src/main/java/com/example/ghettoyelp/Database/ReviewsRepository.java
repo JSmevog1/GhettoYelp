@@ -33,6 +33,26 @@ public class ReviewsRepository {
         reviewDAO = database.reviewDAO();
     }
 
+    public static ReviewsRepository getRepository(Application application){
+        if(repository != null)
+            return repository;
+
+        Future<ReviewsRepository> future = MainDatabase.databaseExecutor.submit(
+                new Callable<ReviewsRepository>() {
+                    @Override
+                    public ReviewsRepository call() throws Exception {
+                        return new ReviewsRepository(application);
+                    }
+                }
+        );
+        try{
+            return future.get();
+        }  catch (InterruptedException | ExecutionException e) {
+            //Log.i(MainActivity.TAG, "Problem in the GymLogRepository");
+        }
+        return null;
+    }
+
     // METHODS to READ and WRITE to DAO
     // get all reviews
     public ArrayList<Review> getAllReviews(){
