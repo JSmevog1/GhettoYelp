@@ -14,7 +14,11 @@ public class ViewAllUsersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_users);
+
+
     }
+
+
 
     static Intent ViewAllUsersIntentFactory(Context context){
         return new Intent(context, ViewAllUsersActivity.class);
