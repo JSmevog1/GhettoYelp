@@ -30,6 +30,10 @@ public class RestaurantRepository {
         restaurantDAO = database.restaurantDAO();
     }
 
+    public static RestaurantRepository getRepository(Application application) {
+        return null;
+    }
+
     public void insertRestaurant(Restaurant newRestaurant) {
     }
 

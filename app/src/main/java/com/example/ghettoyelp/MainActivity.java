@@ -3,7 +3,9 @@ package com.example.ghettoyelp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,17 +14,25 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 
 import com.example.ghettoyelp.Database.Entities.User;
+import com.example.ghettoyelp.Database.MainDatabase;
+import com.example.ghettoyelp.Database.RestaurantRepository;
+import com.example.ghettoyelp.Database.ReviewsRepository;
+import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.ghettoyelp.MAIN_ACTIVITY_USER_ID"; // constant for user ID key
+    static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.ghettoyelp.SAVED_INSTANCE_STATE_USERID_KEY";
     private static final int LOGGED_OUT = -1; // denotes whether a user is logged out or not
     private ActivityMainBinding binding; // binding object for accessing views in the activity's layout
     private int loggedInUserId = LOGGED_OUT;  // the unique identifier tied to each user in the database
     private User user;  // The user logged in to the app
+    private ReviewsRepository reviewsRepository;
+    private RestaurantRepository restaurantRepository;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +40,18 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        loginUser();
+        reviewsRepository = ReviewsRepository.getRepository(getApplication());
+        restaurantRepository = RestaurantRepository.getRepository(getApplication());
+        userRepository = UserRepository.getRepository(getApplication());
 
-        invalidateOptionsMenu();
+        loginUser(savedInstanceState);
 
         if(loggedInUserId == LOGGED_OUT){
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
+
+        updateSharedPreference();
 
         binding.addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         binding.logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                showLogoutDialog();
             }
         });
 
@@ -78,12 +92,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //todo: complete login method
-    private void loginUser() {
-        // if there is no intent to start activity e.g. first time the app loads
-        // then we go to login page to verify user
-        user = new User("user", "user"); // dummy arguments for now
-        loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+    private void loginUser(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
+
+        loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
+
+        if(loggedInUserId == LOGGED_OUT && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)){
+            loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
+        }
+        if(loggedInUserId == LOGGED_OUT){
+            loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+        }
+        if(loggedInUserId == LOGGED_OUT){
+            return;
+        }
+        LiveData<User> userObserver = userRepository.getUserByID(loggedInUserId);
+        userObserver.observe(this, user -> {
+            this.user = user;
+            if(user != null){
+                invalidateOptionsMenu();
+            }
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY, loggedInUserId);
+        updateSharedPreference();
     }
 
     /**
@@ -96,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.logout_menu, menu);
+        inflater.inflate(R.menu.username_menu_display, menu);
         return true;
     }
 
@@ -112,16 +149,13 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.logoutMenuItem);
+        MenuItem item = menu.findItem(R.id.userNameDisplay);
         item.setVisible(true);
-        item.setTitle(user.getUsername());
-        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-                showLogoutDialog();
-                return false;
-            }
-        });
+        if(user == null){
+            return false;
+        }
+        item.setTitle("user");  // change this once we are able to get the databases working.
+                                // it should be user.geUsername as an argument
         return true;
     }
 
@@ -178,7 +212,18 @@ public class MainActivity extends AppCompatActivity {
      * Logs out the user by starting {@code LoginActivity} redirecting the user to the login screen.
      */
     private void logout() {
+        loggedInUserId = LOGGED_OUT;
+        updateSharedPreference();
+        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
         startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+    }
+
+    private void updateSharedPreference(){
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
+        sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
+        sharedPrefEditor.apply();
     }
 
     private void adminViewAllUsers(){
