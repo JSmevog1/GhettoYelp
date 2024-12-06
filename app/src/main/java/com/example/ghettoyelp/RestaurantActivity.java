@@ -2,12 +2,12 @@ package com.example.ghettoyelp;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +16,11 @@ import com.example.ghettoyelp.Database.RestaurantRepository;
 
 import java.util.List;
 
+/**
+ * Activity class for managing the restaurant_table
+ * Incorporates LiveData to observe real-time updates from the database.
+ * Author: Yusra Ashar
+ */
 public class RestaurantActivity extends AppCompatActivity {
 
     private RestaurantRepository restaurantRepository;
@@ -28,7 +33,7 @@ public class RestaurantActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant);
+        setContentView(R.layout.activity_add_restaurant);
 
         // Initialize Repository
         restaurantRepository = new RestaurantRepository(getApplication());
@@ -40,27 +45,30 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurantRecyclerView = findViewById(R.id.restaurantRecyclerView);
 
         // Set up RecyclerView
+        setupRecyclerView();
+
+        // Observe LiveData for real-time updates
+        observeLiveData();
+
+        // Set up Add button click listener
+        addRestaurantButton.setOnClickListener(v -> addRestaurant());
+    }
+
+    private void setupRecyclerView() {
         restaurantAdapter = new RestaurantAdapter();
         restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         restaurantRecyclerView.setAdapter(restaurantAdapter);
-
-        // Load existing restaurants
-        loadRestaurants();
-
-        // Set up Add button
-        addRestaurantButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addRestaurant();
-            }
-        });
     }
 
-    private void loadRestaurants() {
-        new Thread(() -> {
-            List<Restaurant> restaurants = restaurantRepository.getAllRestaurants();
-            runOnUiThread(() -> restaurantAdapter.setRestaurants(restaurants));
-        }).start();
+    private void observeLiveData() {
+        // Observe the LiveData from the repository
+        restaurantRepository.getAllRestaurantsLiveData().observe(this, new Observer<List<Restaurant>>() {
+            @Override
+            public void onChanged(List<Restaurant> restaurants) {
+                // Update the RecyclerView when the data changes
+                restaurantAdapter.setRestaurants(restaurants);
+            }
+        });
     }
 
     private void addRestaurant() {
@@ -72,16 +80,15 @@ public class RestaurantActivity extends AppCompatActivity {
             return;
         }
 
+        // Create a new Restaurant object
         Restaurant newRestaurant = new Restaurant(name, 0.0, 0, description);
 
-        new Thread(() -> {
-            restaurantRepository.insertRestaurant(newRestaurant);
-            runOnUiThread(() -> {
-                Toast.makeText(this, "Restaurant added", Toast.LENGTH_SHORT).show();
-                loadRestaurants();
-                restaurantNameInput.setText("");
-                restaurantDescriptionInput.setText("");
-            });
-        }).start();
+        // Insert restaurant into the database
+        restaurantRepository.insertRestaurant(newRestaurant);
+
+        // Clear input fields
+        restaurantNameInput.setText("");
+        restaurantDescriptionInput.setText("");
+        Toast.makeText(this, "Restaurant added successfully!", Toast.LENGTH_SHORT).show();
     }
 }

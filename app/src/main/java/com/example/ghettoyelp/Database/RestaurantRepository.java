@@ -2,6 +2,8 @@ package com.example.ghettoyelp.Database;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.ghettoyelp.Database.DAOs.RestaurantDAO;
 import com.example.ghettoyelp.Database.Entities.Restaurant;
 
@@ -34,6 +36,11 @@ public class RestaurantRepository {
     }
 
     public List<Restaurant> getAllRestaurants() {
+        return java.util.Collections.emptyList();
+    }
+
+    public LiveData<List<Restaurant>> getAllRestaurantsLiveData() {
+        return null;
     }
 
     // METHODS to READ and WRITE to DAO
