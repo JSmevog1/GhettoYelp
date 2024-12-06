@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (user.isAdmin()){
+        if (true){
             binding.AdminViewAllUsersButton.setVisibility(View.VISIBLE);
             binding.AdminViewAllUsersButton.setOnClickListener(new View.OnClickListener() {
                 @Override

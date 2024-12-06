@@ -8,8 +8,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ghettoyelp.R;
+import com.example.ghettoyelp.databinding.ActivityViewAllUsersBinding;
 
+@Deprecated
 public class ViewAllUsersViewHolder extends RecyclerView.ViewHolder {
+    ActivityViewAllUsersBinding binding;
     private final TextView userViewItem;
     private ViewAllUsersViewHolder(View viewAllUsersView){
         super(viewAllUsersView);
@@ -25,4 +28,5 @@ public class ViewAllUsersViewHolder extends RecyclerView.ViewHolder {
                 .inflate(R.layout.view_user_recycler_item, parent, false);
         return new ViewAllUsersViewHolder(view);
     }
+
 }
