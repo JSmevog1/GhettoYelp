@@ -51,6 +51,10 @@ public class UserRepository {
     // METHODS to READ and WRITE to DAO
     // Get all users
     public LiveData<List<User>> getAllUsersLiveData(){
+        return userDAO.getAllUsersLiveData();
+    }
+
+    public List<User> getAllUsers(){
         return userDAO.getAllUsers();
     }
 
@@ -74,7 +78,6 @@ public class UserRepository {
         return null;
     }
 
-
     public LiveData<User> getUserByUsername(String username){
         return userDAO.getUserByUsername(username);
     }
@@ -84,5 +87,4 @@ public class UserRepository {
     }
 
     // TODO: wait for other issues to add other methods
-
 }

@@ -12,6 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.ghettoyelp.Database.DAOs.RestaurantDAO;
 import com.example.ghettoyelp.Database.DAOs.ReviewDAO;
 import com.example.ghettoyelp.Database.DAOs.UserDAO;
+import com.example.ghettoyelp.Database.Entities.Restaurant;
 import com.example.ghettoyelp.Database.Entities.Review;
 import com.example.ghettoyelp.Database.Entities.User;
 
@@ -20,15 +21,15 @@ import java.util.concurrent.Executors;
 
 /**
  * @author Yui Nguyen
- * Last Update: Dec 4th, 2024
+ * Last Update: Dec 5th, 2024
  * Description:
  *      Main database processor of the application
  *      Communicate between database (DAOs) and other files
  *      Generate default admin account
  */
 
-// TODO: add entities: user, restaurant, reviews
-@Database(entities = {User.class, Review.class}, version = 1, exportSchema = false)
+
+@Database(entities = {User.class, Review.class, Restaurant.class}, version = 1, exportSchema = false)
 public abstract class MainDatabase extends RoomDatabase {
     // name of the database tables
     private static final String DATABASE_NAME = "mainDatabase";
@@ -80,7 +81,6 @@ public abstract class MainDatabase extends RoomDatabase {
     };
 
     // METHODS for DAOs
-    // TODO: wait for entity classes to be created
     public abstract UserDAO userDAO();
     public abstract RestaurantDAO restaurantDAO();
     public abstract ReviewDAO reviewDAO();

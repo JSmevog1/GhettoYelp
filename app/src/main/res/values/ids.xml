@@ -8,3 +8,4 @@
 <item name="restaurantNameInput" type="id">RestaurantNameInput</item>
 
 to what it is now. It was creating an error preventing the app from being built. -->
+
