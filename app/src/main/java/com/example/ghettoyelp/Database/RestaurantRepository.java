@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @author Yui Nguyen
- * Last Update: Dec 2nd, 2024
+ * Last Update: Dec 5th, 2024
  * Description:
  *      A repository to read and write data to RestaurantDAO
  */
@@ -20,7 +20,6 @@ public class RestaurantRepository {
     private static RestaurantRepository repository;
 
     // VARIABLES for DAO
-    // TODO: wait for entity class - Restaurant to be created
     private final RestaurantDAO restaurantDAO;
     private ArrayList<Restaurant> allUsers;
 
@@ -30,11 +29,13 @@ public class RestaurantRepository {
         restaurantDAO = database.restaurantDAO();
     }
 
-    public void insertRestaurant(Restaurant newRestaurant) {
-    }
-
-    public List<Restaurant> getAllRestaurants() {
-    }
+//    public void insertRestaurant(Restaurant newRestaurant) {
+//        restaurantDAO.insert(newRestaurant);
+//    }
+//
+//    public List<Restaurant> getAllRestaurants() {
+//
+//    }
 
     // METHODS to READ and WRITE to DAO
     // TODO: add method to retrieve all restaurants from DAO

@@ -1,29 +1,45 @@
 package com.example.ghettoyelp.Database.DAOs;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 
 import com.example.ghettoyelp.Database.Entities.Restaurant;
+import com.example.ghettoyelp.Database.MainDatabase;
+
+import java.util.List;
 
 /**
  * @author Yui Nguyen
- * Last Update: Dec 4th, 2024
+ * Last Update: Dec 5th, 2024
  * Description:
  *      Data Access Object for Entity Class - Restaurant
  */
 
 @Dao
 public interface RestaurantDAO {
-    // TODO: wait for Restaurant entity class to be created
-    // Method to add a new restaurant into database table
+    // METHOD to add a restaurant
     // If there is any conflict, replace with a new one
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    void insert(Restaurant restaurant);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(Restaurant restaurant);
 
-    //@Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " ORDER BY ")
-    // TODO: add method after entity class - Restaurant is created
+    // METHOD to get restaurants
+    @Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " ORDER BY name DESC")
+    LiveData<List<Restaurant>> getAllRestaurants();
 
-    //@Query("DELETE FROM " + MainDatabase.RESTAURANT_TABLE)
-    // TODO: add method to remove all users from database
+    @Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " WHERE name = :restaurant")
+    LiveData<List<Restaurant>> getRestaurantByName(String restaurant);
+
+    @Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " WHERE id = :givenID")
+    LiveData<List<Restaurant>> getRestaurantByID(int givenID);
+
+    // METHOD to delete restaurants
+    @Delete
+    void delete(Restaurant restaurant);
+
+    @Query("DELETE FROM " + MainDatabase.RESTAURANT_TABLE)
+    void deleteAll();
 }
