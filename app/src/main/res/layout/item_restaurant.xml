@@ -6,6 +6,7 @@
     android:padding="12dp"
     android:layout_margin="8dp">
 
+    <!-- Restaurant Name -->
     <TextView
         android:id="@+id/restaurantName"
         android:layout_width="wrap_content"
@@ -15,6 +16,7 @@
         android:textColor="@color/white"
         android:textStyle="bold" />
 
+    <!-- Restaurant Description -->
     <TextView
         android:id="@+id/restaurantDescription"
         android:layout_width="wrap_content"
@@ -24,20 +26,24 @@
         android:textSize="14sp"
         android:layout_marginTop="4dp" />
 
+    <!-- Review Count and Rating in a Horizontal Layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="8dp">
 
+        <!-- Review Count -->
         <TextView
             android:id="@+id/reviewCount"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="1000 reviews"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
+        <!-- Restaurant Rating -->
         <TextView
             android:id="@+id/restaurantRating"
             android:layout_width="wrap_content"
@@ -45,7 +51,6 @@
             android:text="8.6/10"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:layout_marginStart="auto"
             android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

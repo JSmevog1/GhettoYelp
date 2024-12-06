@@ -14,13 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ghettoyelp.Database.Entities.Restaurant;
 import com.example.ghettoyelp.Database.RestaurantRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Activity class for managing the restaurant_table
- * Incorporates LiveData to observe real-time updates from the database.
- * Author: Yusra Ashar
- */
 public class RestaurantActivity extends AppCompatActivity {
 
     private RestaurantRepository restaurantRepository;
@@ -46,6 +42,9 @@ public class RestaurantActivity extends AppCompatActivity {
 
         // Set up RecyclerView
         setupRecyclerView();
+
+        // Add dummy restaurants
+        addDummyRestaurants();
 
         // Observe LiveData for real-time updates
         observeLiveData();
@@ -80,15 +79,30 @@ public class RestaurantActivity extends AppCompatActivity {
             return;
         }
 
-        // Create a new Restaurant object
         Restaurant newRestaurant = new Restaurant(name, 0.0, 0, description);
 
-        // Insert restaurant into the database
-        restaurantRepository.insertRestaurant(newRestaurant);
+        new Thread(() -> {
+            restaurantRepository.insertRestaurant(newRestaurant);
+            runOnUiThread(() -> {
+                Toast.makeText(this, "Restaurant added successfully!", Toast.LENGTH_SHORT).show();
+                restaurantNameInput.setText("");
+                restaurantDescriptionInput.setText("");
+            });
+        }).start();
+    }
 
-        // Clear input fields
-        restaurantNameInput.setText("");
-        restaurantDescriptionInput.setText("");
-        Toast.makeText(this, "Restaurant added successfully!", Toast.LENGTH_SHORT).show();
+    private void addDummyRestaurants() {
+        // Add dummy data for initial display
+        new Thread(() -> {
+            List<Restaurant> dummyRestaurants = new ArrayList<>();
+            dummyRestaurants.add(new Restaurant("Restaurant 1", 8.5, 100, "A cozy place to dine."));
+            dummyRestaurants.add(new Restaurant("Restaurant 2", 9.0, 200, "Fine dining experience."));
+            dummyRestaurants.add(new Restaurant("Restaurant 3", 7.5, 50, "Affordable meals for all."));
+            dummyRestaurants.add(new Restaurant("Restaurant 4", 8.0, 120, "Casual dining at its best."));
+
+            for (Restaurant restaurant : dummyRestaurants) {
+                restaurantRepository.insertRestaurant(restaurant);
+            }
+        }).start();
     }
 }

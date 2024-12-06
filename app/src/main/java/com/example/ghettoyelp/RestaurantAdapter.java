@@ -12,15 +12,11 @@ import com.example.ghettoyelp.Database.Entities.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;
-/**
- * @author yusraashar
- *  Activity class for restaurant_table
- */
+
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder> {
 
     private List<Restaurant> restaurants = new ArrayList<>();
 
-    // Method to update the list of restaurants and refresh the RecyclerView
     public void setRestaurants(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
         notifyDataSetChanged();
@@ -29,7 +25,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     @NonNull
     @Override
     public RestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate the custom layout for each item
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_restaurant, parent, false);
         return new RestaurantViewHolder(view);
@@ -37,10 +32,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder holder, int position) {
-        // Get the restaurant object for the current position
         Restaurant restaurant = restaurants.get(position);
-
-        // Bind the data to the views in the ViewHolder
         holder.nameTextView.setText(restaurant.getName());
         holder.descriptionTextView.setText(restaurant.getDescription());
         holder.reviewCountTextView.setText(restaurant.getTotalReviews() + " reviews");
@@ -49,7 +41,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     @Override
     public int getItemCount() {
-        return restaurants.size(); // Return the size of the restaurant list
+        return restaurants.size();
     }
 
     static class RestaurantViewHolder extends RecyclerView.ViewHolder {
@@ -60,8 +52,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
         public RestaurantViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            // Bind the views to their respective IDs from item_restaurant.xml
             nameTextView = itemView.findViewById(R.id.restaurantName);
             descriptionTextView = itemView.findViewById(R.id.restaurantDescription);
             reviewCountTextView = itemView.findViewById(R.id.reviewCount);
