@@ -11,6 +11,7 @@ import com.example.ghettoyelp.Database.Entities.Review;
 import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.Database.MainDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +30,10 @@ public interface UserDAO {
 
     // METHODS to get data from USER_TABLE
     @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " ORDER BY username DESC")
-    LiveData<List<User>> getAllUsers();
+    LiveData<List<User>> getAllUsersLiveData();
+
+    @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " ORDER BY username DESC")
+    List<User> getAllUsers();
 
     @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " WHERE username == :name")
     LiveData<User> getUserByUsername(String name);
