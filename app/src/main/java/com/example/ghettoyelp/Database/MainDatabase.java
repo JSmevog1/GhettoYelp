@@ -1,6 +1,7 @@
 package com.example.ghettoyelp.Database;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -42,7 +43,7 @@ public abstract class MainDatabase extends RoomDatabase {
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     // METHODS for database
-    static MainDatabase getDatabase(final Context context){
+    public static MainDatabase getDatabase(final Context context){
         if(INSTANCE == null){
             synchronized (MainDatabase.class){
                 // Database created for the 1st time
@@ -67,13 +68,14 @@ public abstract class MainDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
-            //Log.i(MainActivity.TAG,"DATABASE CREATED!");
+            //Log.i("MainDatabase","DATABASE CREATED!");
             databaseExecutor.execute(()->{
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
                 User admin = new User("admin1", "admin1");
                 admin.setAdmin(true);
                 dao.insert(admin);
+                //Log.i("MainDatabase", "Default admin added");
             });
         }
     };
