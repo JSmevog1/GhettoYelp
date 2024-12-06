@@ -74,22 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (true){
-            binding.AdminViewAllUsersButton.setVisibility(View.VISIBLE);
-            binding.AdminViewAllUsersButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    adminViewAllUsers();
-                }
-            });
-            binding.AdminAddRemoveRestaurantsButton.setVisibility(View.VISIBLE);
-            binding.AdminAddRemoveRestaurantsButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    adminAddRemoveRestaurants();
-                }
-            });
-        }
+        // moved isAdmin functionality to loginUser
     }
 
     private void loginUser(Bundle savedInstanceState) {
@@ -112,8 +97,22 @@ public class MainActivity extends AppCompatActivity {
             this.user = user;
             if(user != null){
                 invalidateOptionsMenu();
+                showAdminButtons(user.isAdmin());
             }
         });
+    }
+
+    private void showAdminButtons(boolean isAdmin) {
+        if (isAdmin) {
+            binding.AdminViewAllUsersButton.setVisibility(View.VISIBLE);
+            binding.AdminViewAllUsersButton.setOnClickListener(v -> adminViewAllUsers());
+
+            binding.AdminAddRemoveRestaurantsButton.setVisibility(View.VISIBLE);
+            binding.AdminAddRemoveRestaurantsButton.setOnClickListener(v -> adminAddRemoveRestaurants());
+        } else {
+            binding.AdminViewAllUsersButton.setVisibility(View.GONE);
+            binding.AdminAddRemoveRestaurantsButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
