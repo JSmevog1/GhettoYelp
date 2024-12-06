@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="restaurantNameInput" type="id">RestaurantNameInput</item>
+    <id name="restaurantNameInput" />
 </resources>
+
+<!-- changed code from this:
+
+<item name="restaurantNameInput" type="id">RestaurantNameInput</item>
+
+to what it is now. It was creating an error preventing the app from being built. -->

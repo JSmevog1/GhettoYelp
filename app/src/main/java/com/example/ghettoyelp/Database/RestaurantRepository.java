@@ -33,8 +33,8 @@ public class RestaurantRepository {
     public void insertRestaurant(Restaurant newRestaurant) {
     }
 
-    public List<Restaurant> getAllRestaurants() {
-    }
+    /*public List<Restaurant> getAllRestaurants() {
+    }*/
 
     // METHODS to READ and WRITE to DAO
     // TODO: add method to retrieve all restaurants from DAO

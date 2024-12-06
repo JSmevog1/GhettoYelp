@@ -58,8 +58,8 @@ public class RestaurantActivity extends AppCompatActivity {
 
     private void loadRestaurants() {
         new Thread(() -> {
-            List<Restaurant> restaurants = restaurantRepository.getAllRestaurants();
-            runOnUiThread(() -> restaurantAdapter.setRestaurants(restaurants));
+          //  List<Restaurant> restaurants = restaurantRepository.getAllRestaurants();
+          //  runOnUiThread(() -> restaurantAdapter.setRestaurants(restaurants));
         }).start();
     }
 
