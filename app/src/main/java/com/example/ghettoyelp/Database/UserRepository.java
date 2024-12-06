@@ -51,6 +51,10 @@ public class UserRepository {
     // METHODS to READ and WRITE to DAO
     // Get all users
     public LiveData<List<User>> getAllUsersLiveData(){
+        return userDAO.getAllUsersLiveData();
+    }
+
+    public List<User> getAllUsers(){
         return userDAO.getAllUsers();
     }
 
