@@ -20,9 +20,9 @@
         android:id="@+id/AllUsersTextView"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        tools:listitem="@layout/view_user_recycler_item"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        tools:listitem="@layout/user_recycler_item"
         android:padding="2dp"
         app:layout_constraintTop_toBottomOf="@+id/AllUsersTextView"
         android:layout_marginTop="16dp"

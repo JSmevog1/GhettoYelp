@@ -16,7 +16,7 @@ public class ViewAllUsersViewHolder extends RecyclerView.ViewHolder {
     private final TextView userViewItem;
     private ViewAllUsersViewHolder(View viewAllUsersView){
         super(viewAllUsersView);
-        userViewItem = viewAllUsersView.findViewById(R.id.userRecyclerItemTextView);
+        userViewItem = viewAllUsersView.findViewById(R.id.usernameItemTextView);
     }
 
     public void bind (String text){
@@ -25,7 +25,7 @@ public class ViewAllUsersViewHolder extends RecyclerView.ViewHolder {
 
     static ViewAllUsersViewHolder create(ViewGroup parent){
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.view_user_recycler_item, parent, false);
+                .inflate(R.layout.user_recycler_item, parent, false);
         return new ViewAllUsersViewHolder(view);
     }
 

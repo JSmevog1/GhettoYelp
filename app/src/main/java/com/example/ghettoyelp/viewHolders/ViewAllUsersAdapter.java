@@ -1,5 +1,6 @@
 package com.example.ghettoyelp.viewHolders;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -25,18 +25,20 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
         this.context = context;
     }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.view_user_recycler_item, parent, false);
+        View view = inflater.inflate(R.layout.user_recycler_item, parent, false);
         return new ViewAllUsersAdapter.MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.textViewName.setText(users.get(position).getUsername());
+        User user = users.get(position);
+        holder.userNameTextView.setText(user.getUsername());
+        holder.reviewNumberTextView.setText("Reviews: " + user.getReviewsCount());
     }
 
     @Override
@@ -45,15 +47,22 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
     }
 
 
-
-
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView textViewName;
+        TextView userNameTextView, reviewNumberTextView;
         Button button;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.userRecyclerItemTextView);
+            userNameTextView = itemView.findViewById(R.id.usernameItemTextView);
+            reviewNumberTextView = itemView.findViewById(R.id.reviewsItemTextView);
+            button = itemView.findViewById(R.id.userViewsButton);
+
+//            button.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
         }
     }
 }
