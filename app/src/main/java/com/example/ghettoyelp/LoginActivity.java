@@ -26,7 +26,6 @@ import com.example.ghettoyelp.databinding.ActivityLoginBinding;
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private ReviewsRepository reviewsRepository;
-    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        userRepository = UserRepository.getRepository(getApplication());
+        UserRepository userRepository = UserRepository.getRepository(getApplication());
+        assert userRepository != null;
         LiveData<User> userObserver = userRepository.getUserByUsername(username);
         userObserver.observe(this, user -> {
             if(user != null){
