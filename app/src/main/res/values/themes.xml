@@ -6,7 +6,7 @@
     </style>
 
     <!-- Theme for login page -->
-    <style name="LoginPageTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="DarkTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
 
     </style>
 

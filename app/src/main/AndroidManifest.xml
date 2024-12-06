@@ -14,16 +14,14 @@
         tools:targetApi="31">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/LoginPageTheme"
-            android:exported="false" />
-        <activity
-            android:name=".AdminActivity"
+            android:theme="@style/DarkTheme"
             android:exported="false" />
         <activity
             android:name=".ViewAllUsersActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:theme="@style/DarkTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

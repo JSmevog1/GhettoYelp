@@ -60,8 +60,6 @@ public class RestaurantRepository {
         restaurantDAO.insert(newRestaurant);
     }
 
-    //public List<Restaurant> getAllRestaurants() { }
-
     public void removeRestaurant(Restaurant restaurant){
         restaurantDAO.delete(restaurant);
 
