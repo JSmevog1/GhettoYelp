@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         if(user == null){
             return false;
         }
-        item.setTitle("user");  // change this once we are able to get the databases working.
+        item.setTitle(user.getUsername());  // change this once we are able to get the databases working.
                                 // it should be user.geUsername as an argument
         return true;
     }
