@@ -31,10 +31,10 @@ public interface RestaurantDAO {
     LiveData<List<Restaurant>> getAllRestaurants();
 
     @Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " WHERE name = :restaurant")
-    LiveData<List<Restaurant>> getRestaurantByName(String restaurant);
+    LiveData<Restaurant> getRestaurantByName(String restaurant);
 
     @Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " WHERE id = :givenID")
-    LiveData<List<Restaurant>> getRestaurantByID(int givenID);
+    LiveData<Restaurant> getRestaurantByID(int givenID);
 
     // METHOD to delete restaurants
     @Delete
