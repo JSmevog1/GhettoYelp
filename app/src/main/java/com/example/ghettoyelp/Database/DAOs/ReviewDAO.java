@@ -1,5 +1,6 @@
 package com.example.ghettoyelp.Database.DAOs;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -13,7 +14,7 @@ import java.util.List;
 
 /**
  * @author Yui Nguyen
- * Last Update: Dec 3rd, 2024
+ * Last Update: Dec 5th, 2024
  * Description:
  *      Data Access Object for Entity Class - Review
  */
@@ -27,13 +28,13 @@ public interface ReviewDAO {
 
     // methods to get reviews
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE)
-    List<Review> getAllReviews();
+    LiveData<List<Review>> getAllReviews();
 
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE + " WHERE username == :name")
-    List<Review> getReviewByUsername(String name);
+    LiveData<List<Review>> getReviewByUsername(String name);
 
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE + " WHERE username == :restaurant")
-    List<Review> getReviewByRestaurant(String restaurant);
+    LiveData<List<Review>> getReviewByRestaurant(String restaurant);
 
     // methods to delete reviews
     @Delete
