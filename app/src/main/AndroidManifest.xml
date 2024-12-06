@@ -18,6 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".ViewAllUsersActivity"
+            android:theme="@style/DarkTheme"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
