@@ -15,4 +15,5 @@
     <string name="login">Login!</string>
     <string name="logged_in">LOGGED IN</string>
     <string name="all_users">All Users</string>
+    <string name="reviews">reviews</string>
 </resources>

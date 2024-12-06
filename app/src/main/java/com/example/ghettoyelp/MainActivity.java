@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (user.isAdmin()){
+        if (true){
             binding.AdminViewAllUsersButton.setVisibility(View.VISIBLE);
             binding.AdminViewAllUsersButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -181,8 +181,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
     }
 
+    /**
+     * Takes the admin to the view all users page by starting {@code ViewAllUsersActivity}
+     */
     private void adminViewAllUsers(){
-
+        startActivity(ViewAllUsersActivity.ViewAllUsersIntentFactory(getApplicationContext()));
     }
 
     private void adminAddRemoveRestaurants(){
