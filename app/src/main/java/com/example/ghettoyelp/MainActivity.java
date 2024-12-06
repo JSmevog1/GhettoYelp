@@ -181,8 +181,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
     }
 
+    /**
+     * Takes the admin to the view all users page by starting {@code ViewAllUsersActivity}
+     */
     private void adminViewAllUsers(){
-
+        startActivity(ViewAllUsersActivity.ViewAllUsersIntentFactory(getApplicationContext()));
     }
 
     private void adminAddRemoveRestaurants(){

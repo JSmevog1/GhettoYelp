@@ -34,6 +34,8 @@ public class RestaurantRepository {
     }
 
     public List<Restaurant> getAllRestaurants() {
+        // added this return to make app run
+        return null;
     }
 
     // METHODS to READ and WRITE to DAO
