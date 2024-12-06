@@ -33,11 +33,11 @@ public class ViewAllUsersActivity extends AppCompatActivity {
         //viewAllUserViewModel = new ViewModelProvider(this).get(ViewAllUserViewModel.class);
 
 
-//        RecyclerView recyclerView = binding.UserDisplayRecyclerView;
-//        assert repository != null;
-//        ViewAllUsersAdapter adapter = new ViewAllUsersAdapter(this, repository.getAllUsers());
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView recyclerView = binding.UserDisplayRecyclerView;
+        assert repository != null;
+        ViewAllUsersAdapter adapter = new ViewAllUsersAdapter(this, repository.getAllUsers());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }
