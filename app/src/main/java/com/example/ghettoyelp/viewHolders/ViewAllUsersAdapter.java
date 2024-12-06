@@ -16,11 +16,12 @@ import com.example.ghettoyelp.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapter.MyViewHolder> {
-    ArrayList<User> users;
+    List<User> users;
     Context context;
-    public ViewAllUsersAdapter(Context context, ArrayList<User> users){
+    public ViewAllUsersAdapter(Context context, List<User> users){
         this.users = users;
         this.context = context;
     }

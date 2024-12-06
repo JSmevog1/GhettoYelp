@@ -53,6 +53,7 @@ public abstract class MainDatabase extends RoomDatabase {
                                     MainDatabase.class, DATABASE_NAME)
                             .fallbackToDestructiveMigration()
                             .addCallback(addDefaultValues)
+                            .allowMainThreadQueries() // added for view users recycler view
                             .build();
                 }
             }
