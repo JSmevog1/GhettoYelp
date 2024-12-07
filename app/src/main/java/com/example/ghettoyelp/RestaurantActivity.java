@@ -1,87 +1,112 @@
 package com.example.ghettoyelp;
 
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ghettoyelp.Database.Entities.Restaurant;
-import com.example.ghettoyelp.Database.RestaurantRepository;
 
 import java.util.List;
 
+/**
+ * @author yusraashar
+ * Dynamically updates the UI with a maximum of 5 restaurants displayed at a time,
+ * using LiveData to observe changes in the data.
+ *
+ * This activity demonstrates the use of Android Architecture Components
+ * such as LiveData and ViewModel to ensure the UI stays updated with real-time changes.
+ *
+ * Activity to manage and display a list of restaurants.
+ */
 public class RestaurantActivity extends AppCompatActivity {
 
-    private RestaurantRepository restaurantRepository;
-    private RestaurantAdapter restaurantAdapter;
-    private EditText restaurantNameInput;
-    private EditText restaurantDescriptionInput;
-    private Button addRestaurantButton;
-    private RecyclerView restaurantRecyclerView;
+    // Layout to dynamically add restaurant views
+    private LinearLayout restaurantListLayout;
 
+    // ViewModel to manage restaurant data
+    private RestaurantViewModel restaurantViewModel;
+
+    /**
+     * Called when the activity is first created.
+     * Sets up the UI components and initializes the ViewModel to observe data changes.
+     *
+     * @param savedInstanceState Saved state of the activity (if any).
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
-        // Initialize Repository
-        restaurantRepository = new RestaurantRepository(getApplication());
+        // Initialize UI components
+        restaurantListLayout = findViewById(R.id.restaurantListLayout);
 
-        // Bind UI components
-        restaurantNameInput = findViewById(R.id.restaurantNameInput);
-        restaurantDescriptionInput = findViewById(R.id.restaurantDescriptionInput);
-        addRestaurantButton = findViewById(R.id.addRestaurantButton);
-        restaurantRecyclerView = findViewById(R.id.restaurantRecyclerView);
+        // Initialize ViewModel to manage restaurant data
+        restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
 
-        // Set up RecyclerView
-        restaurantAdapter = new RestaurantAdapter();
-        restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        restaurantRecyclerView.setAdapter(restaurantAdapter);
-
-        // Load existing restaurants
-        loadRestaurants();
-
-        // Set up Add button
-        addRestaurantButton.setOnClickListener(new View.OnClickListener() {
+        // Observe LiveData for restaurant changes
+        restaurantViewModel.getAllRestaurants().observe(this, new Observer<List<Restaurant>>() {
             @Override
-            public void onClick(View v) {
-                addRestaurant();
+            public void onChanged(List<Restaurant> restaurants) {
+                // Update the UI when data changes
+                updateRestaurantList(restaurants);
             }
         });
     }
 
-    private void loadRestaurants() {
-//        new Thread(() -> {
-//            ist<Restaurant> restaurants = restaurantRepository.getAllRestaurants();
-//            runOnUiThread(() -> restaurantAdapter.setRestaurants(restaurants));
-//        }).start();
-    }
+    /**
+     * Updates the restaurant list dynamically in the UI.
+     * Limits the display to a maximum of 5 restaurants.
+     *
+     * @param restaurants List of restaurants to display.
+     */
+    private void updateRestaurantList(List<Restaurant> restaurants) {
+        restaurantListLayout.removeAllViews(); // Clear existing views
 
-    private void addRestaurant() {
-        String name = restaurantNameInput.getText().toString().trim();
-        String description = restaurantDescriptionInput.getText().toString().trim();
-
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(description)) {
-            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
-            return;
+        // Limit to 5 restaurants for display
+        int count = Math.min(restaurants.size(), 5);
+        for (int i = 0; i < count; i++) {
+            Restaurant restaurant = restaurants.get(i);
+            addRestaurantBox(
+                    restaurant.getName(),
+                    restaurant.getDescription(),
+                    String.format("%.1f/10", restaurant.getRating())
+            );
         }
 
-        Restaurant newRestaurant = new Restaurant(name, 0.0, 0, description);
+        // If no restaurants, display a toast message
+        if (restaurants.isEmpty()) {
+            Toast.makeText(this, "No restaurants available", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        new Thread(() -> {
-            restaurantRepository.insertRestaurant(newRestaurant);
-            runOnUiThread(() -> {
-                Toast.makeText(this, "Restaurant added", Toast.LENGTH_SHORT).show();
-                loadRestaurants();
-                restaurantNameInput.setText("");
-                restaurantDescriptionInput.setText("");
-            });
-        }).start();
+    /**
+     * Dynamically creates a restaurant box and adds it to the LinearLayout.
+     *
+     * @param name        Name of the restaurant.
+     * @param description Description of the restaurant.
+     * @param rating      Rating of the restaurant (formatted as a string).
+     */
+    private void addRestaurantBox(String name, String description, String rating) {
+        // Inflate the item_restaurant.xml layout
+        View restaurantBox = LayoutInflater.from(this).inflate(R.layout.item_restaurant, restaurantListLayout, false);
+
+        // Set restaurant data into the views
+        TextView nameTextView = restaurantBox.findViewById(R.id.restaurantName);
+        TextView descriptionTextView = restaurantBox.findViewById(R.id.restaurantDescription);
+        TextView ratingTextView = restaurantBox.findViewById(R.id.restaurantRating);
+
+        nameTextView.setText(name);
+        descriptionTextView.setText(description);
+        ratingTextView.setText(rating);
+
+        // Add the inflated view to the LinearLayout
+        restaurantListLayout.addView(restaurantBox);
     }
 }

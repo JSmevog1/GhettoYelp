@@ -78,5 +78,10 @@ public class RestaurantRepository {
         return restaurantDAO.getRestaurantByID(ID);
     }
 
+    public LiveData<List<Restaurant>> getAllRestaurantsLiveData() {
+        return null;
+
+    }
+
     // TODO: wait for other issues to add other methods
 }

@@ -2,53 +2,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/rounded_card_background"
-    android:padding="12dp"
-    android:layout_margin="8dp">
+    android:padding="16dp"
+    android:background="@drawable/rounded_card_background">
 
     <TextView
         android:id="@+id/restaurantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Restaurant Name"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/restaurantDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Short description of the restaurant"
-        android:textColor="@color/gray"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        android:text="Description"
+        android:textSize="14sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/restaurantRating"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:text="Rating"
+        android:textStyle="italic"
+        android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/reviewCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1000 reviews"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/restaurantRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="8.6/10"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="end"
-            android:layout_marginStart="8dp"
-            android:textSize="16sp" />
-
-        <!-- added 8dp to marginStart, since auto couldn't be resolved -->
-    </LinearLayout>
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
 </LinearLayout>
