@@ -18,4 +18,5 @@
     <string name="preference_file_key">ghettoYelpPreferenceFileKey</string>
     <string name="preference_userId_key">ghettoYelpPreferenceUserIdKey</string>
     <string name="reviews">reviews</string>
+    <string name="all_previous_reviews">Previous Reviews</string>
 </resources>

@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 
 /**
  * @author Yui Nguyen
- * Last Update: Dec 5th, 2024
+ * Last Update: Dec 7th, 2024
  * Description:
  *      A repository to read and write data to ReviewDAO
  */
@@ -83,6 +83,10 @@ public class ReviewsRepository {
         MainDatabase.databaseExecutor.execute(()->{
             reviewDAO.insert(review);
         });
+    }
+
+    public LiveData<List<Review>> getReviewByUserID(int userID) {
+        return reviewDAO.getReviewByUserID(userID);
     }
 
     // TODO: wait for other issues to add other methods
