@@ -1,9 +1,8 @@
-package com.example.ghettoyelp.viewHolders.Review;
+package com.example.ghettoyelp.viewHolders.AllReviews;
 
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 
 import com.example.ghettoyelp.Database.Entities.Review;
 import com.example.ghettoyelp.Database.ReviewsRepository;

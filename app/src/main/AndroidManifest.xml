@@ -25,6 +25,10 @@
             android:theme="@style/DarkTheme"
             android:exported="false" />
         <activity
+            android:name=".AddReviewActivity"
+            android:theme="@style/DarkTheme"
+            android:exported="false" />
+        <activity
             android:name=".RestaurantActivity"
             android:theme="@style/DarkTheme"
             android:exported="false" />

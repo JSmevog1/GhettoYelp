@@ -1,4 +1,4 @@
-package com.example.ghettoyelp.viewHolders.Review;
+package com.example.ghettoyelp.viewHolders.AllReviews;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;

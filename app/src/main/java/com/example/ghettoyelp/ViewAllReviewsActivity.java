@@ -2,21 +2,16 @@ package com.example.ghettoyelp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.Database.ReviewsRepository;
-import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityViewAllReviewsBinding;
-import com.example.ghettoyelp.databinding.ActivityViewAllUsersBinding;
-import com.example.ghettoyelp.viewHolders.Review.ViewAllReviewsAdapter;
-import com.example.ghettoyelp.viewHolders.Review.ViewAllReviewsViewModel;
-import com.example.ghettoyelp.viewHolders.ViewAllUsersAdapter;
+import com.example.ghettoyelp.viewHolders.AllReviews.ViewAllReviewsAdapter;
+import com.example.ghettoyelp.viewHolders.AllReviews.ViewAllReviewsViewModel;
 
 /**
  * @author Yui Nguyen

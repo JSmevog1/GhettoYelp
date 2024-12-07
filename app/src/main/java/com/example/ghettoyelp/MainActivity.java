@@ -202,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
 
     //todo: implement these functions once the pages have been created
     private void goToAddReviewsPage() {
+        Intent intent = AddReviewActivity.AddReviewIntentFactory(getApplicationContext());
+        startActivity(intent);
     }
 
     private void goToPreviousReviewsPage() {
