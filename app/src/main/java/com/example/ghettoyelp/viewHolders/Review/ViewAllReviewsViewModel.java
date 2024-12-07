@@ -1,4 +1,4 @@
-package com.example.ghettoyelp.viewHolders;
+package com.example.ghettoyelp.viewHolders.Review;
 
 import android.app.Application;
 
@@ -10,8 +10,16 @@ import com.example.ghettoyelp.Database.ReviewsRepository;
 
 import java.util.List;
 
+/**
+ * @author Yui Nguyen
+ * Last Update: Dec 7th, 2024
+ * Description:
+ *      Connecting to Review Repository for live update
+ *      Not really necessary since Add and Display are 2 different activities
+ */
+
 public class ViewAllReviewsViewModel extends AndroidViewModel {
-    private ReviewsRepository repository;
+    private final ReviewsRepository repository;
 
     public ViewAllReviewsViewModel(Application application){
         super(application);

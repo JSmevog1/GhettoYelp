@@ -12,11 +12,13 @@ public class Review {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String username;
+    private String restaurant;
     private String review;
     private int rating;
 
-    public Review(String username, String review, int rating) {
+    public Review(String username, String restaurant, String review, int rating) {
         this.username = username;
+        this.restaurant = restaurant;
         this.review = review;
         this.rating = rating;
     }
@@ -26,12 +28,20 @@ public class Review {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Review review1 = (Review) o;
-        return id == review1.id && rating == review1.rating && Objects.equals(username, review1.username) && Objects.equals(review, review1.review);
+        return id == review1.id && rating == review1.rating && Objects.equals(username, review1.username) && Objects.equals(restaurant, review1.restaurant) && Objects.equals(review, review1.review);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, review, rating);
+        return Objects.hash(id, username, restaurant, review, rating);
+    }
+
+    public String getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(String restaurant) {
+        this.restaurant = restaurant;
     }
 
     public int getId() {
