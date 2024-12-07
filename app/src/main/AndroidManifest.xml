@@ -21,6 +21,14 @@
             android:theme="@style/DarkTheme"
             android:exported="false" />
         <activity
+            android:name=".ViewAllReviewsActivity"
+            android:theme="@style/DarkTheme"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantActivity"
+            android:theme="@style/DarkTheme"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:theme="@style/DarkTheme"
             android:exported="true">

@@ -28,16 +28,16 @@ public interface ReviewDAO {
 
     // methods to get reviews
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE)
-    LiveData<List<Review>> getAllReviews();
+    List<Review> getAllReviews();
 
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE + " WHERE username == :name")
-    LiveData<List<Review>> getReviewByUsername(String name);
+    List<Review> getReviewByUsername(String name);
 
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE + " WHERE username == :restaurant")
-    LiveData<List<Review>> getReviewByRestaurant(String restaurant);
+    List<Review> getReviewByRestaurant(String restaurant);
 
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE + " WHERE id == :userID")
-    LiveData<List<Review>> getReviewByUserID(int userID);
+    List<Review> getReviewByUserID(int userID);
 
     // methods to delete reviews
     @Delete

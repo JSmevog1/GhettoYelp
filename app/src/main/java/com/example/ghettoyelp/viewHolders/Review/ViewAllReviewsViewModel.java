@@ -15,7 +15,6 @@ import java.util.List;
  * Last Update: Dec 7th, 2024
  * Description:
  *      Connecting to Review Repository for live update
- *      Not really necessary since Add and Display are 2 different activities
  */
 
 public class ViewAllReviewsViewModel extends AndroidViewModel {
@@ -30,11 +29,11 @@ public class ViewAllReviewsViewModel extends AndroidViewModel {
         repository.insertReview(review);
     }
 
-    public LiveData<List<Review>> getAllReviewsByUsername(String username) {
+    public List<Review> getAllReviewsByUsername(String username) {
         return repository.getReviewByUsername(username);
     }
 
-    public LiveData<List<Review>> getAllReviewsByID(int userID) {
+    public List<Review> getAllReviewsByID(int userID) {
         return repository.getReviewByUserID(userID);
     }
 }

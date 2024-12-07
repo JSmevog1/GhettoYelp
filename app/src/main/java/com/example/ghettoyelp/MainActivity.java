@@ -205,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToPreviousReviewsPage() {
+        Intent intent = ViewAllReviewsActivity.ViewAllReviewsIntentFactory(getApplicationContext());
+        startActivity(intent);
     }
 
     /**
