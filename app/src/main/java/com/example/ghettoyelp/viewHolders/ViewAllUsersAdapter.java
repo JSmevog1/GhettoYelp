@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +41,7 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
         User user = users.get(position);
         holder.userNameTextView.setText(user.getUsername());
         holder.reviewNumberTextView.setText("Reviews: " + user.getReviewsCount());
+        holder.user = user;
     }
 
     @Override
@@ -51,6 +53,7 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView userNameTextView, reviewNumberTextView;
         Button button;
+        User user;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,12 +61,15 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
             reviewNumberTextView = itemView.findViewById(R.id.reviewsItemTextView);
             button = itemView.findViewById(R.id.userViewsButton);
 
-//            button.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (user.getReviewsCount() == 0){
+                        Toast toast = Toast.makeText(button.getContext(), user.getUsername() + " has no reviews.", Toast.LENGTH_SHORT );
+                        toast.show();
+                    }
+                }
+            });
         }
     }
 }
