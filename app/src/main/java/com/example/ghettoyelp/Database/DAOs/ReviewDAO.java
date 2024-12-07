@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @author Yui Nguyen
- * Last Update: Dec 5th, 2024
+ * Last Update: Dec 7th, 2024
  * Description:
  *      Data Access Object for Entity Class - Review
  */
@@ -35,6 +35,9 @@ public interface ReviewDAO {
 
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE + " WHERE username == :restaurant")
     LiveData<List<Review>> getReviewByRestaurant(String restaurant);
+
+    @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE + " WHERE id == :userID")
+    LiveData<List<Review>> getReviewByUserID(int userID);
 
     // methods to delete reviews
     @Delete
