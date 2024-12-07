@@ -9,13 +9,22 @@
         android:id="@+id/restaurantNameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Restaurant Name" />
+        android:hint="Enter Restaurant Name"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/restaurantDescriptionInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Restaurant Description" />
+        android:hint="Enter Restaurant Description"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/restaurantRatingInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Restaurant Rating"
+        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/addRestaurantButton"
