@@ -79,11 +79,20 @@ public class UserRepository {
     }
 
     public LiveData<User> getUserByUsername(String username){
-        return userDAO.getUserByUsername(username);
+        return userDAO.getUserByUsernameLiveData(username);
     }
 
-    public LiveData<User> getUserByID(int userID){
+    public LiveData<User> getUserByIDLiveData(int userID){
+        return userDAO.getUserByIDLiveData(userID);
+    }
+
+    public User getUserByID(int userID){
         return userDAO.getUserByID(userID);
+    }
+
+    // METHODS to update data
+    public void updateReviewCount(String username, int count){
+        userDAO.updateReview(username, count);
     }
 
     // TODO: wait for other issues to add other methods

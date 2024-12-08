@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddReviewActivity">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/add_new_review"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/RestaurantText"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Restaurant"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+    <EditText
+        android:id="@+id/RestaurantEditText"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Restaurant Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/RestaurantText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/RestaurantText" />
+
+    <TextView
+        android:id="@+id/RatingText"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Rating"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RestaurantText" />
+
+    <EditText
+        android:id="@+id/RatingEditText"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:hint="From 0 to 10"
+        android:inputType="number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/RatingText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/RatingText" />
+
+    <TextView
+        android:id="@+id/restaurantDescription"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Description"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RatingText" />
+
+    <EditText
+        android:id="@+id/DescriptionEditText"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:hint="Share your thought"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurantDescription" />
+
+    <Button
+        android:id="@+id/addReviewButton"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:backgroundTint="@color/dark_gray"
+        android:text="Review!"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionEditText"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/dark_gray"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionEditText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
