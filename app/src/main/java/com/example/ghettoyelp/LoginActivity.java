@@ -39,6 +39,14 @@ public class LoginActivity extends AppCompatActivity {
                 verifyUser();
             }
         });
+
+        binding.signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void verifyUser() {
@@ -69,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void toastMaker(String s) {
+    public void toastMaker(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
