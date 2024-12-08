@@ -35,7 +35,8 @@ public class Review {
     @NonNull
     @Override
     public String toString() {
-        return  restaurant + '\n' +
+        return  username + "\n" +
+                restaurant + '\n' +
                 review + '\n' +
                 rating + "/10";
     }

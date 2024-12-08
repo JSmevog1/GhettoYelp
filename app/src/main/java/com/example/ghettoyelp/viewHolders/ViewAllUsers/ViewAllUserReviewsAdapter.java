@@ -38,9 +38,7 @@ public class ViewAllUserReviewsAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (user.getUsername().equals(allReviews.get(position).getUsername())){
             Review review = allReviews.get(position);
-            if (holder instanceof UserReviewViewHolder){
-                ((UserReviewViewHolder) holder).review.setText(review.toString());
-            }
+            ((UserReviewViewHolder) holder).review.setText(review.toString());
         }
     }
 

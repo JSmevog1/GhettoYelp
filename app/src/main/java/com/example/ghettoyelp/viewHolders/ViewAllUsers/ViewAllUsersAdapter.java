@@ -74,6 +74,7 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
                         toast.show();
                     }
                     else{
+
                         userReviewListDialog();
                     }
                 }
@@ -81,10 +82,11 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
         }
 
         public void userReviewListDialog(){
-            UserReviewDialog reviewDialog = new UserReviewDialog(button.getContext(), reviews,user){
+            UserReviewDialog reviewDialog = new UserReviewDialog(button.getContext(), reviews, user){
                 @Override
                 public void onCreate(Bundle savedInstanceState){
                     super.onCreate(savedInstanceState);
+
                 }
             };
             reviewDialog.show();
