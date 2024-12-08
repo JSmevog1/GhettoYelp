@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding; // binding object for accessing views in the activity's layout
     private int loggedInUserId = LOGGED_OUT;  // the unique identifier tied to each user in the database
     private User user;  // The user logged in to the app
-    private ReviewsRepository reviewsRepository;
-    private RestaurantRepository restaurantRepository;
     private UserRepository userRepository;
 
     @Override
@@ -40,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        reviewsRepository = ReviewsRepository.getRepository(getApplication());
-        restaurantRepository = RestaurantRepository.getRepository(getApplication());
         userRepository = UserRepository.getRepository(getApplication());
 
         loginUser(savedInstanceState);
@@ -153,8 +149,7 @@ public class MainActivity extends AppCompatActivity {
         if(user == null){
             return false;
         }
-        item.setTitle(user.getUsername());  // change this once we are able to get the databases working.
-                                // it should be user.geUsername as an argument
+        item.setTitle(user.getUsername());
         return true;
     }
 

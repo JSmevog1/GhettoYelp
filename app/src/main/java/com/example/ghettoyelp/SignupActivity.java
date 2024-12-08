@@ -50,7 +50,7 @@ public class SignupActivity extends AppCompatActivity {
             if(user != null){
                 toastMaker("Username already exists.");
             }else{
-                // this prevents "username already exists from popping up after a user signs up
+                // this prevents "username already exists" from popping up after a user signs up
                 userObserver.removeObservers(SignupActivity.this);
                 User newUser = new User(username, password);
                 userRepository.insertUser(newUser);
