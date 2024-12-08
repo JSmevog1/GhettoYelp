@@ -1,16 +1,14 @@
-package com.example.ghettoyelp.viewHolders.Review;
+package com.example.ghettoyelp.viewHolders.AllReviews;
 
-import android.view.View;
+import android.content.Context;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.ghettoyelp.Database.Entities.Review;
+import java.util.List;
 
 /**
  * @author Yui Nguyen
@@ -21,9 +19,14 @@ import com.example.ghettoyelp.Database.Entities.Review;
  */
 
 public class ViewAllReviewsAdapter extends ListAdapter<Review, ViewAllReviewsViewHolder> {
+    List<Review> reviews;
+    Context context;
 
-    public ViewAllReviewsAdapter(@NonNull DiffUtil.ItemCallback<Review> diffCallback){
+
+    public ViewAllReviewsAdapter(@NonNull DiffUtil.ItemCallback<Review> diffCallback, Context context, List<Review> reviews){
         super(diffCallback);
+        this.context = context;
+        this.reviews = reviews;
     }
 
     @NonNull

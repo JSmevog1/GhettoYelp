@@ -57,18 +57,22 @@ public class ReviewsRepository {
 
     // METHODS to READ and WRITE to DAO
     // get all reviews
-    public LiveData<List<Review>> getAllReviews(){
+    public List<Review> getAllReviews(){
         return reviewDAO.getAllReviews();
     }
 
     // get reviews by username
-    public LiveData<List<Review>> getReviewByUsername(String username){
+    public List<Review> getReviewByUsername(String username){
         return reviewDAO.getReviewByUsername(username);
     }
 
     // get reviews by restaurant's name
-    public LiveData<List<Review>> getReviewByRestaurant(String restaurant){
+    public List<Review> getReviewByRestaurant(String restaurant){
         return reviewDAO.getReviewByRestaurant(restaurant);
+    }
+
+    public List<Review> getReviewByUserID(int userID) {
+        return reviewDAO.getReviewByUserID(userID);
     }
 
     // add new
@@ -85,9 +89,6 @@ public class ReviewsRepository {
         });
     }
 
-    public LiveData<List<Review>> getReviewByUserID(int userID) {
-        return reviewDAO.getReviewByUserID(userID);
-    }
 
     // TODO: wait for other issues to add other methods
 }
