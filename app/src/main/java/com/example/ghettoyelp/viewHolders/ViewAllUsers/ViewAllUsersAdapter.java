@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ghettoyelp.Database.Entities.Review;
 import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.R;
 
@@ -19,10 +20,13 @@ import java.util.List;
 
 public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapter.ViewUserViewHolder> {
     List<User> users;
+    List<Review> reviews;
     Context context;
-    public ViewAllUsersAdapter(Context context, List<User> users){
+
+    public ViewAllUsersAdapter(Context context, List<User> users,List<Review> reviews){
         this.users = users;
         this.context = context;
+        this.reviews = reviews;
     }
 
     @NonNull
