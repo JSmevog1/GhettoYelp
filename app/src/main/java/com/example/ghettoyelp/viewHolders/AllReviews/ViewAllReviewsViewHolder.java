@@ -22,12 +22,12 @@ import com.example.ghettoyelp.R;
 public class ViewAllReviewsViewHolder extends RecyclerView.ViewHolder {
     private final TextView restaurantNameTextView, ratingTextView, descriptionTextview;
 
-    private ViewAllReviewsViewHolder(View gymLogView){
-        super(gymLogView);
+    private ViewAllReviewsViewHolder(View viewAllReviews){
+        super(viewAllReviews);
         // reference to item that will be generated
-        restaurantNameTextView = gymLogView.findViewById(R.id.restaurantNameReviewTextView);
-        ratingTextView = gymLogView.findViewById(R.id.restaurantRatingReviewTextView);
-        descriptionTextview = gymLogView.findViewById(R.id.restaurantDescriptionReviewTextView);
+        restaurantNameTextView = viewAllReviews.findViewById(R.id.restaurantNameReviewTextView);
+        ratingTextView = viewAllReviews.findViewById(R.id.restaurantRatingReviewTextView);
+        descriptionTextview = viewAllReviews.findViewById(R.id.restaurantDescriptionReviewTextView);
     }
 
     @SuppressLint("DefaultLocale")
@@ -39,7 +39,7 @@ public class ViewAllReviewsViewHolder extends RecyclerView.ViewHolder {
 
     // reference to the displacement
     static ViewAllReviewsViewHolder create(ViewGroup parent){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_recycler_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.review_recycler_item, parent, false);
         return new ViewAllReviewsViewHolder(view);
     }
 

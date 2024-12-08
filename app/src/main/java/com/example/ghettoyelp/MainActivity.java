@@ -209,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToPreviousReviewsPage() {
         Intent intent = ViewAllReviewsActivity.ViewAllReviewsIntentFactory(getApplicationContext());
+        intent.putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
         startActivity(intent);
     }
 
