@@ -2,6 +2,7 @@ package com.example.ghettoyelp.viewHolders.ViewAllUsers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
         holder.userNameTextView.setText(user.getUsername());
         holder.reviewNumberTextView.setText("Reviews: " + user.getReviewsCount());
         holder.user = user;
+        holder.reviews = reviews;
     }
 
     @Override
@@ -56,6 +58,7 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
         TextView userNameTextView, reviewNumberTextView;
         Button button;
         User user;
+        List<Review> reviews;
 
         public ViewUserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,8 +73,23 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
                         Toast toast = Toast.makeText(button.getContext(), user.getUsername() + " has no reviews.", Toast.LENGTH_SHORT );
                         toast.show();
                     }
+                    else{
+                        userReviewListDialog();
+                    }
                 }
             });
         }
+
+        public void userReviewListDialog(){
+            UserReviewDialog reviewDialog = new UserReviewDialog(button.getContext(), reviews,user){
+                @Override
+                public void onCreate(Bundle savedInstanceState){
+                    super.onCreate(savedInstanceState);
+                }
+            };
+            reviewDialog.show();
+        }
+
+
     }
 }
