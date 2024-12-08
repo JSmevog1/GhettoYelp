@@ -1,5 +1,7 @@
 package com.example.ghettoyelp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,5 +110,9 @@ public class RestaurantActivity extends AppCompatActivity {
 
         // Add the inflated view to the LinearLayout
         restaurantListLayout.addView(restaurantBox);
+    }
+
+    static Intent RestaurantIntentFactory(Context context){
+        return new Intent(context, RestaurantActivity.class);
     }
 }

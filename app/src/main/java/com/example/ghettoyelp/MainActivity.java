@@ -239,6 +239,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void adminAddRemoveRestaurants(){
-
+        startActivity(RestaurantActivity.RestaurantIntentFactory(getApplicationContext()));
     }
 }
