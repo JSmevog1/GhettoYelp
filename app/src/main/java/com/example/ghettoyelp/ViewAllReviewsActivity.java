@@ -24,6 +24,7 @@ public class ViewAllReviewsActivity extends AppCompatActivity {
     private ActivityViewAllReviewsBinding binding;
     private ViewAllReviewsViewModel reviewsViewModel;
     private ReviewsRepository repository;
+    private int userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class ViewAllReviewsActivity extends AppCompatActivity {
 
         repository = ReviewsRepository.getRepository(getApplication());
         RecyclerView recyclerView = binding.ReviewsDisplayRecyclerView;
-        int userID = getIntent().getIntExtra("com.example.ghettoyelp.MAIN_ACTIVITY_USER_ID", -1);
+        userID = getIntent().getIntExtra("com.example.ghettoyelp.MAIN_ACTIVITY_USER_ID", -1);
 
         ViewAllReviewsAdapter adapter = new ViewAllReviewsAdapter(new ViewAllReviewsAdapter.ReviewDiff(),
                 this, repository.getReviewByUserID(userID));

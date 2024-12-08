@@ -203,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
     //todo: implement these functions once the pages have been created
     private void goToAddReviewsPage() {
         Intent intent = AddReviewActivity.AddReviewIntentFactory(getApplicationContext());
+        intent.putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
         startActivity(intent);
     }
 
