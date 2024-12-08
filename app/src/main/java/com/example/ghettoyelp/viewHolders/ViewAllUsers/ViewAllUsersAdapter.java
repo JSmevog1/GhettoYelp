@@ -1,4 +1,4 @@
-package com.example.ghettoyelp.viewHolders;
+package com.example.ghettoyelp.viewHolders.ViewAllUsers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,12 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.R;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapter.MyViewHolder> {
+public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapter.ViewUserViewHolder> {
     List<User> users;
     Context context;
     public ViewAllUsersAdapter(Context context, List<User> users){
@@ -29,15 +27,15 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewUserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.user_recycler_item, parent, false);
-        return new ViewAllUsersAdapter.MyViewHolder(view);
+        return new ViewUserViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewUserViewHolder holder, int position) {
         User user = users.get(position);
         holder.userNameTextView.setText(user.getUsername());
         holder.reviewNumberTextView.setText("Reviews: " + user.getReviewsCount());
@@ -50,12 +48,12 @@ public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapte
     }
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewUserViewHolder extends RecyclerView.ViewHolder{
         TextView userNameTextView, reviewNumberTextView;
         Button button;
         User user;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public ViewUserViewHolder(@NonNull View itemView) {
             super(itemView);
             userNameTextView = itemView.findViewById(R.id.usernameItemTextView);
             reviewNumberTextView = itemView.findViewById(R.id.reviewsItemTextView);

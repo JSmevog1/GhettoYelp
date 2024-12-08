@@ -1,4 +1,4 @@
-package com.example.ghettoyelp.viewHolders;
+package com.example.ghettoyelp.viewHolders.ViewAllUsers;
 
 import android.app.Application;
 
@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.Database.UserRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ViewAllUserViewModel extends AndroidViewModel {

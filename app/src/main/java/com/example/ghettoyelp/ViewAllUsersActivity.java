@@ -5,17 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityViewAllUsersBinding;
-import com.example.ghettoyelp.viewHolders.ViewAllUserViewModel;
-import com.example.ghettoyelp.viewHolders.ViewAllUsersAdapter;
-
-import java.util.ArrayList;
+import com.example.ghettoyelp.viewHolders.ViewAllUsers.ViewAllUserViewModel;
+import com.example.ghettoyelp.viewHolders.ViewAllUsers.ViewAllUsersAdapter;
 
 public class ViewAllUsersActivity extends AppCompatActivity {
     private ActivityViewAllUsersBinding binding;
