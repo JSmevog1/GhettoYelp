@@ -19,5 +19,6 @@
     <string name="preference_userId_key">ghettoYelpPreferenceUserIdKey</string>
     <string name="reviews">reviews</string>
     <string name="all_previous_reviews">Previous Reviews</string>
-    <string name="add_new_review">Add Review</string>
+    <string name="signup">Signup!</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
