@@ -98,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
             if(user != null){
                 invalidateOptionsMenu();
                 showAdminButtons(user.isAdmin());
+                MenuItem item = findViewById(R.id.userNameDisplay);
+                if(item != null){
+                    item.setTitle(user.getUsername());
+                }
             }
         });
     }
