@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.Database.ReviewsRepository;
+import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityViewAllReviewsBinding;
 import com.example.ghettoyelp.viewHolders.AllReviews.ViewAllReviewsAdapter;
 import com.example.ghettoyelp.viewHolders.AllReviews.ViewAllReviewsViewHolder;
@@ -39,12 +42,17 @@ public class ViewAllReviewsActivity extends AppCompatActivity {
         RecyclerView recyclerView = binding.ReviewsDisplayRecyclerView;
         userID = getIntent().getIntExtra("com.example.ghettoyelp.MAIN_ACTIVITY_USER_ID", -1);
 
-        ViewAllReviewsAdapter adapter = new ViewAllReviewsAdapter(new ViewAllReviewsAdapter.ReviewDiff(),
-                this, repository.getReviewByUserID(userID));
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LiveData<User> observer = UserRepository.getRepository(getApplication()).getUserByIDLiveData(userID);
+        observer.observe(this, user -> {
+            if (user != null){
+                ViewAllReviewsAdapter adapter = new ViewAllReviewsAdapter(new ViewAllReviewsAdapter.ReviewDiff(),
+                        this, repository.getReviewByUsername(user.getUsername()));
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter.submitList(reviewsViewModel.getAllReviewsByID(userID));
+                adapter.submitList(reviewsViewModel.getAllReviewsByUsername(user.getUsername()));
+            }
+        });
     }
 
     static Intent ViewAllReviewsIntentFactory(Context context){

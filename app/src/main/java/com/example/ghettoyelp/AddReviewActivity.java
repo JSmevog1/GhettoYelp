@@ -30,8 +30,8 @@ import java.util.List;
 
 public class AddReviewActivity extends AppCompatActivity {
     private ActivityAddReviewBinding binding;
-    private ReviewsRepository repository;
-
+    private ReviewsRepository reviewsRepository;
+    private UserRepository userRepository;
     private int userID;
     private String mRestaurant;
     private int mRating;
@@ -42,7 +42,8 @@ public class AddReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddReviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        repository = ReviewsRepository.getRepository(getApplication());
+        reviewsRepository = ReviewsRepository.getRepository(getApplication());
+        userRepository = UserRepository.getRepository(getApplication());
         userID = getIntent().getIntExtra("com.example.ghettoyelp.MAIN_ACTIVITY_USER_ID", -1);
 
         binding.addReviewButton.setOnClickListener(new View.OnClickListener() {
@@ -122,19 +123,14 @@ public class AddReviewActivity extends AppCompatActivity {
 
     // check input data before adding into the Review database
     private void addReview(){
-        LiveData<User> userLiveData = UserRepository.getRepository(getApplication()).getUserByID(userID);
-        userLiveData.observe(this, user -> {
-            if (user != null) {
-                String username = user.getUsername();
-                Review review = new Review(username, mRestaurant, mDescription, mRating);
-                repository.insertReview(review);
+        User user = userRepository.getUserByID(userID);
+        Review review = new Review(user.getUsername(), mRestaurant, mDescription, mRating);
+        this.reviewsRepository.insertReview(review);
 
-                //TODO: increment count for restaurant and user
-                user.setReviewsCount(user.getReviewsCount() + 1);
+        //TODO: increment count for restaurant and user
+        userRepository.updateReviewCount(user.getUsername(), user.getReviewsCount() + 1);
 
-                Toast.makeText(this,"Thank you for your review!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        Toast.makeText(this,"Thank you for your review!", Toast.LENGTH_SHORT).show();
     }
 
     // reset display on UI

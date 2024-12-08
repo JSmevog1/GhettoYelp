@@ -7,11 +7,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.ghettoyelp.Database.Entities.Review;
 import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.Database.MainDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,10 +34,17 @@ public interface UserDAO {
     List<User> getAllUsers();
 
     @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " WHERE username == :name")
-    LiveData<User> getUserByUsername(String name);
+    LiveData<User> getUserByUsernameLiveData(String name);
 
     @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " WHERE id == :ID")
-    LiveData<User> getUserByID(int ID);
+    LiveData<User> getUserByIDLiveData(int ID);
+
+    @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " WHERE id == :ID")
+    User getUserByID(int ID);
+
+    // METHODS to update variable for user
+    @Query(" UPDATE " + MainDatabase.USER_TABLE + " SET reviewsCount = :count WHERE username == :name")
+    void updateReview(String name, int count);
 
     // METHODS to delete user
     @Delete
