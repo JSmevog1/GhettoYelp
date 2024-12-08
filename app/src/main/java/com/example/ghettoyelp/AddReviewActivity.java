@@ -48,8 +48,10 @@ public class AddReviewActivity extends AppCompatActivity {
         binding.addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getInformationFromDisplay();
-                addReview();
+                if(getInformationFromDisplay()){
+                    addReview();
+                    resetReview();
+                }
             }
         });
 
@@ -89,18 +91,33 @@ public class AddReviewActivity extends AppCompatActivity {
         startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), userID));
     }
 
-    private void getInformationFromDisplay(){
+    private boolean getInformationFromDisplay(){
         //TODO: check for restaurant existence before adding
         mRestaurant = binding.RestaurantEditText.getText().toString();
-        LiveData<List<Restaurant>> restaurants = RestaurantRepository.getRepository(getApplication()).getAllRestaurants();
-        restaurants.observe(this, restaurant ->{
-            if(restaurant != null){
+        if (!mRestaurant.isEmpty()){
+            LiveData<List<Restaurant>> restaurants = RestaurantRepository.getRepository(getApplication()).getAllRestaurants();
+            restaurants.observe(this, restaurant ->{
+                if(restaurant != null){
 
-            }
-        });
+                }
+            });
+        }
+        else{
+            Toast.makeText(this, "Please enter restaurant you want to review", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
+
+        // TODO: check for Rating range from 0 to 10
         mRating = Integer.parseInt(String.valueOf(binding.RatingEditText.getText()));
+        if(mRating < 0 || mRating > 10){
+            Toast.makeText(this, "Rating must be from 0 to 10", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // description can be emptied
         mDescription = binding.DescriptionEditText.getText().toString();
+        return true;
     }
 
     // check input data before adding into the Review database
@@ -112,9 +129,19 @@ public class AddReviewActivity extends AppCompatActivity {
                 Review review = new Review(username, mRestaurant, mDescription, mRating);
                 repository.insertReview(review);
 
-                Toast.makeText(this, "Thank you for your review!", Toast.LENGTH_SHORT).show();
+                //TODO: increment count for restaurant and user
+                user.setReviewsCount(user.getReviewsCount() + 1);
+
+                Toast.makeText(this,"Thank you for your review!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // reset display on UI
+    private void resetReview(){
+        binding.RestaurantEditText.setText("");
+        binding.RatingEditText.setText("");
+        binding.DescriptionEditText.setText("");
     }
 
     static Intent AddReviewIntentFactory(Context context){
