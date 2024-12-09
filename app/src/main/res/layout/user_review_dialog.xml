@@ -8,7 +8,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent" 
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
@@ -21,6 +21,23 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reviews"
+                android:textSize="32sp"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/black"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/dark_gray"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reviewListRecycler"
