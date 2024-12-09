@@ -13,11 +13,13 @@ import com.example.ghettoyelp.Database.Entities.Review;
 import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewAllUserReviewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context context;
     private final List<Review> allReviews;
+    private final List<Review> userReviews = new ArrayList<>();
     private final User user;
 
     public ViewAllUserReviewsAdapter(Context context, List<Review> allReviews, User user) {
@@ -36,15 +38,22 @@ public class ViewAllUserReviewsAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (user.getUsername().equals(allReviews.get(position).getUsername())){
-            Review review = allReviews.get(position);
-            ((UserReviewViewHolder) holder).review.setText(review.toString());
+        getUserReviews();
+        Review review = userReviews.get(position);
+        ((UserReviewViewHolder) holder).review.setText(review.toString());
+    }
+
+    private void getUserReviews(){
+        for (int i = 0; i < allReviews.size(); i++) {
+            if (user.getUsername().equals(allReviews.get(i).getUsername())) {
+                userReviews.add(allReviews.get(i));
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return allReviews.size();
+        return user.getReviewsCount();
     }
 
     private static class UserReviewViewHolder extends RecyclerView.ViewHolder {
