@@ -3,6 +3,7 @@ package com.example.ghettoyelp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ public class ViewAllUsersActivity extends AppCompatActivity {
     private ActivityViewAllUsersBinding binding;
     private UserRepository userRepository;
     private ReviewsRepository reviewsRepository;
+    private int userId;
 
 
     @Override
@@ -25,11 +27,19 @@ public class ViewAllUsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityViewAllUsersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        userId = getIntent().getIntExtra("com.example.ghettoyelp.MAIN_ACTIVITY_USER_ID", -1);
 
         userRepository = UserRepository.getRepository(getApplication());
         reviewsRepository = ReviewsRepository.getRepository(getApplication());
 
         userRecyclerView();
+
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), userId));
+            }
+        });
 
     }
 
