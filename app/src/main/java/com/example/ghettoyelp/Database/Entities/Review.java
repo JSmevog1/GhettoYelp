@@ -1,5 +1,6 @@
 package com.example.ghettoyelp.Database.Entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -29,6 +30,15 @@ public class Review {
         if (o == null || getClass() != o.getClass()) return false;
         Review review1 = (Review) o;
         return id == review1.id && rating == review1.rating && Objects.equals(username, review1.username) && Objects.equals(restaurant, review1.restaurant) && Objects.equals(review, review1.review);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return  username + "\n" +
+                restaurant + '\n' +
+                review + '\n' +
+                rating + "/10";
     }
 
     @Override

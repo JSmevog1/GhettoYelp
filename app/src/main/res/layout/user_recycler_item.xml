@@ -28,14 +28,15 @@
                 android:id="@+id/usernameItemTextView"
                 android:layout_width="102dp"
                 android:layout_height="32dp"
-                android:layout_margin="8dp"
+                android:layout_margin="15dp"
                 android:backgroundTint="@color/cardview_dark_background"
                 android:padding="2dp"
                 android:text="@string/username"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="102dp"
@@ -60,6 +61,7 @@
                 android:backgroundTint="@color/dark_gray"
                 android:textColor="@color/white"
                 android:background="@drawable/rounded_button"
+                android:layout_marginEnd="4dp"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

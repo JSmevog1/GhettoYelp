@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         if(loggedInUserId == LOGGED_OUT){
             return;
         }
-        LiveData<User> userObserver = userRepository.getUserByID(loggedInUserId);
+        LiveData<User> userObserver = userRepository.getUserByIDLiveData(loggedInUserId);
         userObserver.observe(this, user -> {
             this.user = user;
             if(user != null){
@@ -197,9 +197,15 @@ public class MainActivity extends AppCompatActivity {
 
     //todo: implement these functions once the pages have been created
     private void goToAddReviewsPage() {
+        Intent intent = AddReviewActivity.AddReviewIntentFactory(getApplicationContext());
+        intent.putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
+        startActivity(intent);
     }
 
     private void goToPreviousReviewsPage() {
+        Intent intent = ViewAllReviewsActivity.ViewAllReviewsIntentFactory(getApplicationContext());
+        intent.putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
+        startActivity(intent);
     }
 
     /**
@@ -224,10 +230,10 @@ public class MainActivity extends AppCompatActivity {
      * Takes the admin to the view all users page by starting {@code ViewAllUsersActivity}
      */
     private void adminViewAllUsers(){
-        startActivity(ViewAllUsersActivity.ViewAllUsersIntentFactory(getApplicationContext()));
+        startActivity(ViewAllUsersActivity.ViewAllUsersIntentFactory(getApplicationContext()).putExtra(MAIN_ACTIVITY_USER_ID,loggedInUserId));
     }
 
     private void adminAddRemoveRestaurants(){
-
+        startActivity(RestaurantActivity.RestaurantIntentFactory(getApplicationContext()));
     }
 }
