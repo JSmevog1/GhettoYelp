@@ -62,24 +62,18 @@ public class LoginActivity extends AppCompatActivity {
         assert userRepository != null;
         LiveData<User> userObserver = userRepository.getUserByUsername(username);
 
-        userObserver.observe(this, new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                // Remove the observer immediately after it gets called
-                userObserver.removeObserver(this);
-
-                if (user != null) {
-                    String password = binding.passwordLoginEditText.getText().toString();
-                    if (password.equals(user.getPassword())) {
-                        startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
-                    } else {
-                        toastMaker("Invalid password.");
-                        binding.passwordLoginEditText.setSelection(0);
-                    }
-                } else {
-                    toastMaker(String.format("%s is not a valid username.", username));
-                    binding.userNameLoginEditText.setSelection(0);
+        userObserver.observe(this, user -> {
+            if(user != null){
+                String password = binding.passwordLoginEditText.getText().toString();
+                if(password.equals(user.getPassword())){
+                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                }else{
+                    toastMaker("Invalid password.");
+                    binding.passwordLoginEditText.setSelection(0);
                 }
+            }else{
+                toastMaker(String.format("%s is not a valid username.", username));
+                binding.userNameLoginEditText.setSelection(0);
             }
         });
     }
