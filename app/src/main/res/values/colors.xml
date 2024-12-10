@@ -5,4 +5,5 @@
     <color name="gray">#888888</color>
     <color name="dark_gray">#222222</color>
     <color name="teal_700">#00796B</color>
+    <color name="purple_200">purple_200</color>
 </resources>
