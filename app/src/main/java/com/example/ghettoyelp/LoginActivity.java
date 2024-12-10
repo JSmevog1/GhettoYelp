@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.Database.ReviewsRepository;
@@ -50,10 +51,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void verifyUser() {
-
         String username = binding.userNameLoginEditText.getText().toString();
 
-        if(username.isEmpty()){
+        if (username.isEmpty()) {
             toastMaker("Username can't be blank.");
             return;
         }
@@ -61,18 +61,25 @@ public class LoginActivity extends AppCompatActivity {
         UserRepository userRepository = UserRepository.getRepository(getApplication());
         assert userRepository != null;
         LiveData<User> userObserver = userRepository.getUserByUsername(username);
-        userObserver.observe(this, user -> {
-            if(user != null){
-                String password = binding.passwordLoginEditText.getText().toString();
-                if(password.equals(user.getPassword())){
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
-                }else{
-                    toastMaker("Invalid password.");
-                    binding.passwordLoginEditText.setSelection(0);
+
+        userObserver.observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                // Remove the observer immediately after it gets called
+                userObserver.removeObserver(this);
+
+                if (user != null) {
+                    String password = binding.passwordLoginEditText.getText().toString();
+                    if (password.equals(user.getPassword())) {
+                        startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                    } else {
+                        toastMaker("Invalid password.");
+                        binding.passwordLoginEditText.setSelection(0);
+                    }
+                } else {
+                    toastMaker(String.format("%s is not a valid username.", username));
+                    binding.userNameLoginEditText.setSelection(0);
                 }
-            }else{
-                toastMaker(String.format("%s is not a valid username.", username));
-                binding.userNameLoginEditText.setSelection(0);
             }
         });
     }
