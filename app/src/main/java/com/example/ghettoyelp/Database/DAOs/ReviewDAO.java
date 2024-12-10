@@ -30,6 +30,9 @@ public interface ReviewDAO {
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE)
     List<Review> getAllReviews();
 
+    @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE)
+    LiveData<List<Review>> getAllReviewsLiveData();
+
     @Query("SELECT * FROM " + MainDatabase.REVIEWS_TABLE + " WHERE username == :name")
     List<Review> getReviewByUsername(String name);
 

@@ -61,6 +61,10 @@ public class ReviewsRepository {
         return reviewDAO.getAllReviews();
     }
 
+    public LiveData<List<Review>> getAllReviewsLiveData(){
+        return reviewDAO.getAllReviewsLiveData();
+    }
+
     // get reviews by username
     public List<Review> getReviewByUsername(String username){
         return reviewDAO.getReviewByUsername(username);
