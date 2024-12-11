@@ -36,6 +36,9 @@ public interface UserDAO {
     @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " WHERE username == :name")
     LiveData<User> getUserByUsernameLiveData(String name);
 
+    @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " WHERE username == :name")
+    User getUserByUsername(String name);
+
     @Query("SELECT * FROM " + MainDatabase.USER_TABLE + " WHERE id == :ID")
     LiveData<User> getUserByIDLiveData(int ID);
 

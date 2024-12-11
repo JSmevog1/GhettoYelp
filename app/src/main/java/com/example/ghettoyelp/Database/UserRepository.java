@@ -82,6 +82,10 @@ public class UserRepository {
         return userDAO.getUserByUsernameLiveData(username);
     }
 
+    public User getUserByName(String username){
+        return userDAO.getUserByUsername(username);
+    }
+
     public LiveData<User> getUserByIDLiveData(int userID){
         return userDAO.getUserByIDLiveData(userID);
     }

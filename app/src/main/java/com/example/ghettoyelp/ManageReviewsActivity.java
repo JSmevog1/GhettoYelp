@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ghettoyelp.Database.ReviewsRepository;
 import com.example.ghettoyelp.databinding.ActivityManageReviewsBinding;
 import com.example.ghettoyelp.viewHolders.ViewAllUsers.ManageReviews.ManageReviewAdapter;
 import com.example.ghettoyelp.viewHolders.ViewAllUsers.ManageReviews.ManageReviewModel;
