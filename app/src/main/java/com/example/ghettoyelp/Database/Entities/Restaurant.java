@@ -2,12 +2,15 @@ package com.example.ghettoyelp.Database.Entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.example.ghettoyelp.Database.MainDatabase;
+
 /**
  * @author yusraashar
  * Entity class for the restaurant_table in the database
  * This defines the structure for storing restaurant information.
  */
-@Entity(tableName = "restaurants")
+@Entity(tableName = MainDatabase.RESTAURANT_TABLE)
 public class Restaurant {
     @PrimaryKey(autoGenerate = true)
     private int id;

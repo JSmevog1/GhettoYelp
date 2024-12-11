@@ -57,7 +57,9 @@ public interface RestaurantDAO {
         return null;
     }
 
+    @Query("DELETE FROM " + MainDatabase.RESTAURANT_TABLE + " WHERE id = :restaurantId")
     void deleteById(int restaurantId);
 
+    @Query("DELETE FROM " + MainDatabase.RESTAURANT_TABLE)
     void clearAll();
 }
