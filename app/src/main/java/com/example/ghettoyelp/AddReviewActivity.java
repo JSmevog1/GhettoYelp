@@ -20,6 +20,7 @@ import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityAddReviewBinding;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Yui Nguyen
@@ -95,21 +96,11 @@ public class AddReviewActivity extends AppCompatActivity {
     private boolean getInformationFromDisplay(){
         //TODO: check for restaurant existence before adding
         mRestaurant = binding.RestaurantEditText.getText().toString();
-        if (!mRestaurant.isEmpty()){
-            LiveData<List<Restaurant>> restaurants = RestaurantRepository.getRepository(getApplication()).getAllRestaurants();
-            restaurants.observe(this, restaurant ->{
-                if(restaurant != null){
-
-                }
-            });
-        }
-        else{
+        if (mRestaurant.isEmpty()) {
             Toast.makeText(this, "Please enter restaurant you want to review", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-
-        // TODO: check for Rating range from 0 to 10
         mRating = Integer.parseInt(String.valueOf(binding.RatingEditText.getText()));
         if(mRating < 0 || mRating > 10){
             Toast.makeText(this, "Rating must be from 0 to 10", Toast.LENGTH_SHORT).show();
