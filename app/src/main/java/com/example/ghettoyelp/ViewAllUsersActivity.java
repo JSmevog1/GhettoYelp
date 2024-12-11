@@ -41,6 +41,13 @@ public class ViewAllUsersActivity extends AppCompatActivity {
             }
         });
 
+        binding.ViewAllReviewsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ManageReviewsActivity.ManageReviewsActivityIntentFactory(getApplicationContext()));
+            }
+        });
+
     }
 
     private void userRecyclerView(){
