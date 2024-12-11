@@ -25,7 +25,7 @@ public class ManageReviewAdapter extends ListAdapter<Review, ManageReviewViewHol
         holder.bind(current.toString());
     }
 
-    static class MangeReviewDiff extends DiffUtil.ItemCallback<Review>{
+    public static class ManageReviewDiff extends DiffUtil.ItemCallback<Review>{
         @Override
         public boolean areItemsTheSame(@NonNull Review oldItem, @NonNull Review newItem) {
             return oldItem == newItem;

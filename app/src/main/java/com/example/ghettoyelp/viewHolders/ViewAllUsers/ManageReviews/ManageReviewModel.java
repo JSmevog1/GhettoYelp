@@ -12,20 +12,14 @@ import java.util.List;
 
 public class ManageReviewModel extends AndroidViewModel {
     private final ReviewsRepository repository;
-    private final LiveData<List<Review>> allReviews;
 
     public ManageReviewModel(Application application){
         super(application);
         repository = ReviewsRepository.getRepository(application);
-        assert repository != null;
-        allReviews = repository.getAllReviewsLiveData();
     }
 
     public LiveData<List<Review>> getAllReviews(){
-        return allReviews;
+        return repository.getAllReviewsLiveData();
     }
 
-//    public void insert(Review review){
-//        repository.insertReview(review);
-//    }
 }
