@@ -15,6 +15,15 @@ public class Restaurant {
     private String name;
     private String description;
     private double rating;
+    private int totalReviews;
+
+    // constructor
+    public Restaurant(String name, double rating, int totalReviews, String description){
+        this.name = name;
+        this.rating = rating;
+        this.totalReviews = totalReviews;
+        this.description = description;
+    }
 
     // Getters and setters
     public int getId() {
@@ -47,5 +56,13 @@ public class Restaurant {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public int getTotalReviews() {
+        return totalReviews;
+    }
+
+    public void setTotalReviews(int totalReviews) {
+        this.totalReviews = totalReviews;
     }
 }
