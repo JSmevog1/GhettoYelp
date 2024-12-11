@@ -73,9 +73,27 @@ public abstract class MainDatabase extends RoomDatabase {
             databaseExecutor.execute(()->{
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
+
+                // default users
                 User admin = new User("admin1", "admin1");
                 admin.setAdmin(true);
+                User user = new User("user1", "user1");
                 dao.insert(admin);
+                dao.insert(user);
+
+                // default restaurants
+                RestaurantDAO restaurantDAO = INSTANCE.restaurantDAO();
+                restaurantDAO.insert(new Restaurant("Hong Kong Express", 10, 0,
+                        "Chinese fast food."));
+                restaurantDAO.insert(new Restaurant("Carrot & Daikon Banh Mi", 10, 0,
+                        "Best Vietnamese Baguettes in SoCal"));
+                restaurantDAO.insert(new Restaurant("Shin-Sen-Gumi Yakitori", 10, 0,
+                        "Informal Japanese chain serving charcoal-grilled yakitori, plus sushi, udon & ramen."));
+                restaurantDAO.insert(new Restaurant("In-N-Out Burger", 10, 0,
+                        "Classic burger chain serving customizable burgers, hand-cut fries & shakes."));
+                restaurantDAO.insert(new Restaurant("Chick-fil-A", 10, 0,
+                        "Fast-food chain serving chicken sandwiches & nuggets along with salads & sides.    "));
+
                 //Log.i("MainDatabase", "Default admin added");
             });
         }
