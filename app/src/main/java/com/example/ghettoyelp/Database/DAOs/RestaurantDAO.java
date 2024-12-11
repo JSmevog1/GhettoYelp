@@ -31,10 +31,20 @@ public interface RestaurantDAO {
     LiveData<List<Restaurant>> getAllRestaurants();
 
     @Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " WHERE name = :restaurant")
-    LiveData<Restaurant> getRestaurantByName(String restaurant);
+    LiveData<Restaurant> getRestaurantByNameLiveData(String restaurant);
+
+    @Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " WHERE name = :restaurant")
+    Restaurant getRestaurantByName(String restaurant);
 
     @Query("SELECT * FROM " + MainDatabase.RESTAURANT_TABLE + " WHERE id = :givenID")
     LiveData<Restaurant> getRestaurantByID(int givenID);
+
+    // METHOD to update information
+    @Query(" UPDATE " + MainDatabase.RESTAURANT_TABLE + " SET totalReviews = :count WHERE name == :name")
+    void updateReview(String name, int count);
+
+    @Query(" UPDATE " + MainDatabase.RESTAURANT_TABLE + " SET rating = :rating WHERE name == :name")
+    void updateRating(String name, double rating);
 
     // METHOD to delete restaurants
     @Delete

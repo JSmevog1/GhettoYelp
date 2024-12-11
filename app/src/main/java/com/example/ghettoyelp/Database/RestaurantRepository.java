@@ -66,12 +66,25 @@ public class RestaurantRepository {
 
     }
 
+    // METHODS to modify data
+    public void updateReview(String name, int count){
+        restaurantDAO.updateReview(name, count);
+    }
+
+    public void updateRating(String name, double rating){
+        restaurantDAO.updateRating(name, rating);
+    }
+
     // METHODS to get restaurants
     public LiveData<List<Restaurant>> getAllRestaurants() {
         return restaurantDAO.getAllRestaurants();
     }
 
-    public LiveData<Restaurant> getRestaurantByName(String name){
+    public LiveData<Restaurant> getRestaurantByNameLiveData(String name){
+        return restaurantDAO.getRestaurantByNameLiveData(name);
+    }
+
+    public Restaurant getRestaurantByName(String name){
         return restaurantDAO.getRestaurantByName(name);
     }
 
@@ -83,7 +96,6 @@ public class RestaurantRepository {
         return null;
 
     }
-
 
     public void deleteRestaurant(int restaurantId) {
         Executor executorService = null;
@@ -98,6 +110,5 @@ public class RestaurantRepository {
         Executor executorService = null;
         executorService.execute(restaurantDAO::clearAll);
     }
-
     // TODO: wait for other issues to add other methods
 }

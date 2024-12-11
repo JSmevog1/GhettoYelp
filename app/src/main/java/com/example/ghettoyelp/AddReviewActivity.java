@@ -19,11 +19,9 @@ import com.example.ghettoyelp.Database.ReviewsRepository;
 import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityAddReviewBinding;
 
-import java.util.List;
-
 /**
  * @author Yui Nguyen
- * Last Update: Dec 7th, 2024
+ * Last Update: Dec 10th, 2024
  * Description:
  *      Activity Page to handle UI operations on Add Review Page
  */
@@ -31,6 +29,7 @@ import java.util.List;
 public class AddReviewActivity extends AppCompatActivity {
     private ActivityAddReviewBinding binding;
     private ReviewsRepository reviewsRepository;
+    private RestaurantRepository restaurantRepository;
     private UserRepository userRepository;
     private int userID;
     private String mRestaurant;
@@ -43,6 +42,7 @@ public class AddReviewActivity extends AppCompatActivity {
         binding = ActivityAddReviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         reviewsRepository = ReviewsRepository.getRepository(getApplication());
+        restaurantRepository = RestaurantRepository.getRepository(getApplication());
         userRepository = UserRepository.getRepository(getApplication());
         userID = getIntent().getIntExtra("com.example.ghettoyelp.MAIN_ACTIVITY_USER_ID", -1);
 
@@ -93,23 +93,12 @@ public class AddReviewActivity extends AppCompatActivity {
     }
 
     private boolean getInformationFromDisplay(){
-        //TODO: check for restaurant existence before adding
         mRestaurant = binding.RestaurantEditText.getText().toString();
-        if (!mRestaurant.isEmpty()){
-            LiveData<List<Restaurant>> restaurants = RestaurantRepository.getRepository(getApplication()).getAllRestaurants();
-            restaurants.observe(this, restaurant ->{
-                if(restaurant != null){
-
-                }
-            });
-        }
-        else{
+        if (mRestaurant.isEmpty()) {
             Toast.makeText(this, "Please enter restaurant you want to review", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-
-        // TODO: check for Rating range from 0 to 10
         mRating = Integer.parseInt(String.valueOf(binding.RatingEditText.getText()));
         if(mRating < 0 || mRating > 10){
             Toast.makeText(this, "Rating must be from 0 to 10", Toast.LENGTH_SHORT).show();
@@ -124,11 +113,22 @@ public class AddReviewActivity extends AppCompatActivity {
     // check input data before adding into the Review database
     private void addReview(){
         User user = userRepository.getUserByID(userID);
+        Restaurant restaurant = restaurantRepository.getRestaurantByName(mRestaurant);
+
         Review review = new Review(user.getUsername(), mRestaurant, mDescription, mRating);
         this.reviewsRepository.insertReview(review);
 
-        //TODO: increment count for restaurant and user
+        //increment count for user
         userRepository.updateReviewCount(user.getUsername(), user.getReviewsCount() + 1);
+
+        // increment count and calculate rating for restaurant
+        // total = average * count
+        double totalRating = restaurant.getRating() * restaurant.getTotalReviews() + mRating;
+        double newRating = totalRating / (restaurant.getTotalReviews() + 1);
+
+        restaurantRepository.updateRating(mRestaurant, newRating);
+        restaurantRepository.updateReview(mRestaurant, restaurant.getTotalReviews() + 1);
+
 
         Toast.makeText(this,"Thank you for your review!", Toast.LENGTH_SHORT).show();
     }
