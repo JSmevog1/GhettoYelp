@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ghettoyelp.Database.ReviewsRepository;
 import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityViewAllUsersBinding;
-import com.example.ghettoyelp.viewHolders.ViewAllUsers.ViewAllUserViewModel;
+
 import com.example.ghettoyelp.viewHolders.ViewAllUsers.ViewAllUsersAdapter;
 
 public class ViewAllUsersActivity extends AppCompatActivity {
