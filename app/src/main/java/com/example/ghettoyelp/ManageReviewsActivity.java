@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,6 @@ import com.example.ghettoyelp.viewHolders.ViewAllUsers.ManageReviews.ManageRevie
 
 public class ManageReviewsActivity extends AppCompatActivity {
     private ActivityManageReviewsBinding binding;
-    private ReviewsRepository repository;
     private ManageReviewModel manageReviewModel;
 
     @Override
@@ -27,12 +27,14 @@ public class ManageReviewsActivity extends AppCompatActivity {
         binding = ActivityManageReviewsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = ReviewsRepository.getRepository(getApplication());
-
         manageReviewModel = new ViewModelProvider(this).get(ManageReviewModel.class);
 
         RecyclerView recyclerView = binding.ManageReviewsRecycler;
-        final ManageReviewAdapter adapter = new ManageReviewAdapter(new ManageReviewAdapter.ManageReviewDiff());
+        final ManageReviewAdapter adapter = new ManageReviewAdapter(new ManageReviewAdapter.ManageReviewDiff(), review -> {
+            // Handle button click action here
+            manageReviewModel.deleteReview(review);
+            Toast.makeText(this, "Review deleted.", Toast.LENGTH_SHORT).show();
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

@@ -22,4 +22,8 @@ public class ManageReviewModel extends AndroidViewModel {
         return repository.getAllReviewsLiveData();
     }
 
+    public void deleteReview(Review review) {
+        repository.deleteReview(review);
+    }
+
 }
