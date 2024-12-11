@@ -1,0 +1,31 @@
+package com.example.ghettoyelp.viewHolders.ViewAllUsers.ManageReviews;
+
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
+import com.example.ghettoyelp.Database.Entities.Review;
+import com.example.ghettoyelp.Database.ReviewsRepository;
+
+import java.util.List;
+
+public class ManageReviewModel extends AndroidViewModel {
+    private final ReviewsRepository repository;
+    private final LiveData<List<Review>> allReviews;
+
+    public ManageReviewModel(Application application){
+        super(application);
+        repository = ReviewsRepository.getRepository(application);
+        assert repository != null;
+        allReviews = repository.getAllReviewsLiveData();
+    }
+
+    public LiveData<List<Review>> getAllReviews(){
+        return allReviews;
+    }
+
+//    public void insert(Review review){
+//        repository.insertReview(review);
+//    }
+}
