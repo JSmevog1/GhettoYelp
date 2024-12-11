@@ -84,10 +84,10 @@ public class AddRestaurantActivity extends AppCompatActivity {
         }
 
         // Create a new Restaurant object
-        Restaurant restaurant = new Restaurant();
-        restaurant.setName(name);
-        restaurant.setDescription(description);
-        restaurant.setRating(rating);
+        Restaurant restaurant = new Restaurant(name, rating, 0, description);
+//        restaurant.setName(name);
+//        restaurant.setDescription(description);
+//        restaurant.setRating(rating);
 
         // Insert the restaurant into the database using the ViewModel
         restaurantViewModel.insertRestaurant(restaurant);
