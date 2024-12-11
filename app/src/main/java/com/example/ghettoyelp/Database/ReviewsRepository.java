@@ -89,7 +89,7 @@ public class ReviewsRepository {
     // delete review
     public void deleteReview(Review review){
         MainDatabase.databaseExecutor.execute(()->{
-            reviewDAO.insert(review);
+            reviewDAO.delete(review);
         });
     }
 

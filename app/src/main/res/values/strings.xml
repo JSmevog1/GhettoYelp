@@ -24,4 +24,7 @@
     <string name="review">Review</string>
     <string name="add_new_review">Add New Review</string>
     <string name="back">Back</string>
+    <string name="manage_reviews">Manage Reviews</string>
+    <string name="remove">Remove</string>
+    <string name="view_all_reviews">View all Reviews</string>
 </resources>

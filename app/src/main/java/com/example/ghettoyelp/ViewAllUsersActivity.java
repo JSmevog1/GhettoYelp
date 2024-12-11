@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ghettoyelp.Database.ReviewsRepository;
 import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityViewAllUsersBinding;
-import com.example.ghettoyelp.viewHolders.ViewAllUsers.ViewAllUserViewModel;
+
 import com.example.ghettoyelp.viewHolders.ViewAllUsers.ViewAllUsersAdapter;
 
 public class ViewAllUsersActivity extends AppCompatActivity {
@@ -38,6 +38,13 @@ public class ViewAllUsersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), userId));
+            }
+        });
+
+        binding.ViewAllReviewsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ManageReviewsActivity.ManageReviewsActivityIntentFactory(getApplicationContext()));
             }
         });
 
