@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
 
 /**
@@ -91,5 +92,23 @@ public class RestaurantRepository {
         return restaurantDAO.getRestaurantByID(ID);
     }
 
+    public LiveData<List<Restaurant>> getAllRestaurantsLiveData() {
+        return null;
+
+    }
+
+    public void deleteRestaurant(int restaurantId) {
+        Executor executorService = null;
+        executorService.execute(() -> restaurantDAO.deleteById(restaurantId));
+    }
+
+    public List<Restaurant> getAllRestaurantsPaginated(int limit, int offset) {
+        return restaurantDAO.getAllRestaurantsPaginated(limit, offset);
+    }
+
+    public void clearAllRestaurants() {
+        Executor executorService = null;
+        executorService.execute(restaurantDAO::clearAll);
+    }
     // TODO: wait for other issues to add other methods
 }

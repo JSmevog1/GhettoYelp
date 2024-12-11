@@ -54,7 +54,8 @@ public class ViewAllRestaurantsActivity extends AppCompatActivity {
         restaurantAdapter.setOnDeleteClickListener(restaurant -> {
             if (restaurant != null) {
                 // Delete the selected restaurant using ViewModel
-                //restaurantViewModel.deleteRestaurant(restaurant.getName());
+                //restaurantViewModel.deleteRestaurant(restaurant.getId());
+
                 Toast.makeText(this, "Restaurant deleted", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Error: Restaurant not found", Toast.LENGTH_SHORT).show();

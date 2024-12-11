@@ -83,6 +83,7 @@ public abstract class MainDatabase extends RoomDatabase {
 
                 // default restaurants
                 RestaurantDAO restaurantDAO = INSTANCE.restaurantDAO();
+
                 restaurantDAO.insert(new Restaurant("Hong Kong Express", 0, 0,
                         "Chinese fast food."));
                 restaurantDAO.insert(new Restaurant("Carrot & Daikon", 0, 0,

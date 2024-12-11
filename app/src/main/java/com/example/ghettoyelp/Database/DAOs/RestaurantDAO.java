@@ -52,4 +52,12 @@ public interface RestaurantDAO {
 
     @Query("DELETE FROM " + MainDatabase.RESTAURANT_TABLE)
     void deleteAll();
+
+    default List<Restaurant> getAllRestaurantsPaginated(int limit, int offset) {
+        return null;
+    }
+
+    void deleteById(int restaurantId);
+
+    void clearAll();
 }

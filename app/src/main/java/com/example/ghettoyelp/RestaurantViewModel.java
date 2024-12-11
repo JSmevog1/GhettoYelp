@@ -12,33 +12,37 @@ import com.example.ghettoyelp.Database.RestaurantRepository;
 import java.util.List;
 
 /**
+ * RestaurantViewModel is a part of the MVVM architecture and acts as a bridge
+ * between the UI and the data repository. It manages the restaurant data and
+ * provides lifecycle-aware access to the repository.
+ *
  * @author yusraashar
- * ViewModel class to manage UI-related data for the RestaurantActivity.
- * It provides a clean API for the Activity to interact with the underlying data layer.
- * This ensures data persists across configuration changes (e.g., screen rotations).
  */
 public class RestaurantViewModel extends AndroidViewModel {
 
-    private final RestaurantRepository restaurantRepository; // Repository to manage restaurant data
-    private final LiveData<List<Restaurant>> allRestaurants; // LiveData containing a list of all restaurants
+    // Repository instance for handling restaurant data
+    private final RestaurantRepository repository;
+
+    // LiveData for observing all restaurants
+    private final LiveData<List<Restaurant>> allRestaurants;
 
     /**
-     * Constructor for RestaurantViewModel.
+     * Constructor initializes the repository and preloads all restaurants as LiveData.
      *
-     * @param application Application context required for repository initialization.
+     * @param application The application context.
      */
     public RestaurantViewModel(@NonNull Application application) {
         super(application);
-        // Initialize the repository and retrieve the list of all restaurants
-        restaurantRepository = new RestaurantRepository(application);
-        allRestaurants = restaurantRepository.getAllRestaurants();
+        repository = new RestaurantRepository(application);
+        allRestaurants = repository.getAllRestaurants();
     }
 
     /**
      * Returns a LiveData object containing the list of all restaurants.
-     * The data is observed in the Activity to automatically reflect changes in the UI.
+     * Observing this LiveData ensures that the UI updates automatically
+     * when the data changes.
      *
-     * @return LiveData object containing a list of Restaurant objects.
+     * @return LiveData list of all restaurants.
      */
     public LiveData<List<Restaurant>> getAllRestaurants() {
         return allRestaurants;
@@ -47,18 +51,30 @@ public class RestaurantViewModel extends AndroidViewModel {
     /**
      * Inserts a new restaurant into the database.
      *
-     * @param restaurant The Restaurant object to be added to the database.
+     * @param restaurant The Restaurant object to be inserted.
      */
     public void insertRestaurant(Restaurant restaurant) {
-        restaurantRepository.insertRestaurant(restaurant);
+        repository.insertRestaurant(restaurant);
     }
 
     /**
-     * Deletes an existing restaurant from the database.
+     * Deletes a restaurant from the database by its ID.
      *
-     * @param restaurant The Restaurant object to be removed from the database.
+     * @param restaurantId The ID of the restaurant to be deleted.
      */
-    public void deleteRestaurant(Restaurant restaurant) {
-        restaurantRepository.removeRestaurant(restaurant);
+    public void deleteRestaurant(int restaurantId) {
+        repository.deleteRestaurant(restaurantId);
+    }
+
+    /**
+     * Fetches a paginated list of restaurants from the repository.
+     * This method runs synchronously and is typically used for smaller datasets.
+     *
+     * @param limit  The maximum number of restaurants to retrieve.
+     * @param offset The offset from which to start fetching.
+     * @return A list of restaurants for the given page.
+     */
+    public List<Restaurant> getAllRestaurantsPaginated(int limit, int offset) {
+        return repository.getAllRestaurantsPaginated(limit, offset);
     }
 }
