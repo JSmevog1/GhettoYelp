@@ -99,8 +99,12 @@ public class AddReviewActivity extends AppCompatActivity {
             return false;
         }
 
-        mRating = Integer.parseInt(String.valueOf(binding.RatingEditText.getText()));
-        if(mRating < 0 || mRating > 10){
+        try {
+            mRating = Integer.parseInt(String.valueOf(binding.RatingEditText.getText()));
+            if(mRating < 0 || mRating > 10){
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
             Toast.makeText(this, "Rating must be from 0 to 10", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -114,6 +118,12 @@ public class AddReviewActivity extends AppCompatActivity {
     private void addReview(){
         User user = userRepository.getUserByID(userID);
         Restaurant restaurant = restaurantRepository.getRestaurantByName(mRestaurant);
+
+        if(restaurant == null){
+            Toast.makeText(this, String.format("%s cannot found", mRestaurant), Toast.LENGTH_SHORT).show();
+            return ;
+
+        }
 
         Review review = new Review(user.getUsername(), mRestaurant, mDescription, mRating);
         this.reviewsRepository.insertReview(review);
