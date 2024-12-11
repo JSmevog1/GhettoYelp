@@ -8,15 +8,15 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.ghettoyelp.databinding.ActivityMangeReviewsBinding;
+import com.example.ghettoyelp.databinding.ActivityManageReviewsBinding;
 
 public class ManageReviewsActivity extends AppCompatActivity {
-    private ActivityMangeReviewsBinding binding;
+    private ActivityManageReviewsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMangeReviewsBinding.inflate(getLayoutInflater());
+        binding = ActivityManageReviewsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.backButton.setOnClickListener(new View.OnClickListener() {
