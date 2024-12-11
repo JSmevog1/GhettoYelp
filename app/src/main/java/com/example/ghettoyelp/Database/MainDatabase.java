@@ -93,7 +93,7 @@ public abstract class MainDatabase extends RoomDatabase {
                 restaurantDAO.insert(new Restaurant("In-N-Out Burger", 0, 0,
                         "Classic burger chain serving customizable burgers, hand-cut fries & shakes."));
                 restaurantDAO.insert(new Restaurant("Chick-fil-A", 0, 0,
-                        "Fast-food chain serving chicken sandwiches & nuggets along with salads & sides.    "));
+                        "Fast-food chain serving chicken sandwiches & nuggets along with salads & sides."));
 
                 //Log.i("MainDatabase", "Default admin added");
             });
