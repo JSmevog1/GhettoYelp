@@ -8,6 +8,10 @@ import com.example.ghettoyelp.Database.MainDatabase;
 
 import java.util.Objects;
 
+/**
+ * @author Jason Smevog
+ * Entity class for reviews, hols all the information for each review object
+ */
 @Entity(tableName = MainDatabase.REVIEWS_TABLE)
 public class Review {
     @PrimaryKey(autoGenerate = true)

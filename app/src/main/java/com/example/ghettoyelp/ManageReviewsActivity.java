@@ -16,6 +16,11 @@ import com.example.ghettoyelp.databinding.ActivityManageReviewsBinding;
 import com.example.ghettoyelp.viewHolders.ViewAllUsers.ManageReviews.ManageReviewAdapter;
 import com.example.ghettoyelp.viewHolders.ViewAllUsers.ManageReviews.ManageReviewModel;
 
+/**
+ * @author Jason Smevog
+ * Activity for managing reviews, displays a recycler view with reviews that allow you to delete them from the database
+ */
+
 public class ManageReviewsActivity extends AppCompatActivity {
     private ActivityManageReviewsBinding binding;
     private ManageReviewModel manageReviewModel;

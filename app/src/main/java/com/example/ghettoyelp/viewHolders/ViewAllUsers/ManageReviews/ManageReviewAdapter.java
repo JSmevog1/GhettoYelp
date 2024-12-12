@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.ghettoyelp.Database.Entities.Review;
 
+/**
+ * @author Jason Smevog
+ * Adapter for the manage review recycler with live data
+ */
 public class ManageReviewAdapter extends ListAdapter<Review, ManageReviewViewHolder> {
     private final OnItemActionListener actionListener;
 

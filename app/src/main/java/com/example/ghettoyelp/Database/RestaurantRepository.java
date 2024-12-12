@@ -75,6 +75,10 @@ public class RestaurantRepository {
         restaurantDAO.updateRating(name, rating);
     }
 
+    public void updateRestaurantReviewCount(String name, int count){
+        restaurantDAO.updateRestaurantReviewCount(name, count);
+    }
+
     // METHODS to get restaurants
     public LiveData<List<Restaurant>> getAllRestaurants() {
         return restaurantDAO.getAllRestaurants();
