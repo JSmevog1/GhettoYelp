@@ -46,6 +46,8 @@ public interface RestaurantDAO {
     @Query(" UPDATE " + MainDatabase.RESTAURANT_TABLE + " SET rating = :rating WHERE name == :name")
     void updateRating(String name, double rating);
 
+    @Query(" UPDATE " + MainDatabase.RESTAURANT_TABLE + " SET totalReviews = :count WHERE name == :name")
+    void updateRestaurantReviewCount(String name, int count);
     // METHOD to delete restaurants
     @Delete
     void delete(Restaurant restaurant);
@@ -62,4 +64,6 @@ public interface RestaurantDAO {
 
     @Query("DELETE FROM " + MainDatabase.RESTAURANT_TABLE)
     void clearAll();
+
+
 }
