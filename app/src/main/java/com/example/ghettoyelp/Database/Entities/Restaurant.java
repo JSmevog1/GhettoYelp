@@ -28,6 +28,10 @@ public class Restaurant {
         this.description = description;
     }
 
+    public Restaurant() {
+
+    }
+
     // Getters and setters
     public int getId() {
         return id;
