@@ -15,7 +15,10 @@ import com.example.ghettoyelp.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Jason Smevog
+ * Adapter for the view all user reviews recycler, has the view holder as an inner class that binds the textview
+ */
 public class ViewAllUserReviewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context context;
     private final List<Review> allReviews;

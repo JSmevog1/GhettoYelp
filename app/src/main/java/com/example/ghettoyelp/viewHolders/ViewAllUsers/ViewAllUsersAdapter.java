@@ -18,7 +18,11 @@ import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.R;
 
 import java.util.List;
-
+/**
+ * @author Jason Smevog
+ * Adapter for the view all users recycler, has the view holder as an inner class that binds the textviews and button,
+ * and listens for clicks
+ */
 public class ViewAllUsersAdapter extends RecyclerView.Adapter<ViewAllUsersAdapter.ViewUserViewHolder> {
     List<User> users;
     List<Review> reviews;

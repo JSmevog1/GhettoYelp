@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ghettoyelp.R;
 
+/**
+ * @author Jason Smevog
+ * View Holder for the manage review recycler view, binds the text views and the buttons
+ */
 public class ManageReviewViewHolder extends RecyclerView.ViewHolder {
     TextView reviewViewItem;
     Button deleteReviewButton;

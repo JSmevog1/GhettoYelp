@@ -14,6 +14,11 @@ import com.example.ghettoyelp.Database.UserRepository;
 
 import java.util.List;
 
+/**
+ * @author Jason Smevog
+ * view model for manageReviewActivity that holds the methods for the implementation of the recycler view
+ */
+
 public class ManageReviewModel extends AndroidViewModel {
     private final ReviewsRepository reviewsRepository;
 

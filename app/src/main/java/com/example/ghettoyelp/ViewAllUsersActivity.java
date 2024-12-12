@@ -14,7 +14,11 @@ import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityViewAllUsersBinding;
 
 import com.example.ghettoyelp.viewHolders.ViewAllUsers.ViewAllUsersAdapter;
-
+/**
+ * @author Jason Smevog
+ * Activity for viewing all users. Display recycler view of users that displays their name, review
+ * count, and a button that creates a popup of their reviews
+ */
 public class ViewAllUsersActivity extends AppCompatActivity {
     private ActivityViewAllUsersBinding binding;
     private UserRepository userRepository;

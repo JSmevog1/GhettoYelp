@@ -14,7 +14,10 @@ import com.example.ghettoyelp.Database.Entities.User;
 import com.example.ghettoyelp.R;
 
 import java.util.List;
-
+/**
+ * @author Jason Smevog
+ * Dialog class that creates the dialog and sets up the recycler inside of it
+ */
 public class UserReviewDialog extends Dialog {
     private final List<Review> reviews;
     User user;
