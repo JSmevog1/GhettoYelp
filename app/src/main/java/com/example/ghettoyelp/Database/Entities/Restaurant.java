@@ -31,7 +31,6 @@ public class Restaurant {
     public Restaurant() {
 
     }
-
     // Getters and setters
     public int getId() {
         return id;
