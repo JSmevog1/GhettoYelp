@@ -1,5 +1,7 @@
 package com.example.ghettoyelp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -85,9 +87,9 @@ public class AddRestaurantActivity extends AppCompatActivity {
 
         // Create a new Restaurant object
         Restaurant restaurant = new Restaurant(name, rating, 0, description);
-//        restaurant.setName(name);
-//        restaurant.setDescription(description);
-//        restaurant.setRating(rating);
+        restaurant.setName(name);
+        restaurant.setDescription(description);
+        restaurant.setRating(rating);
 
         // Insert the restaurant into the database using the ViewModel
         restaurantViewModel.insertRestaurant(restaurant);
@@ -97,5 +99,9 @@ public class AddRestaurantActivity extends AppCompatActivity {
         nameInput.setText("");
         descriptionInput.setText("");
         ratingInput.setText("");
+    }
+
+    static Intent AddRestaurantIntentFactory(Context context){
+        return new Intent(context, AddRestaurantActivity.class);
     }
 }
