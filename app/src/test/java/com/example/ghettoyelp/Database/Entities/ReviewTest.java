@@ -2,6 +2,10 @@ package com.example.ghettoyelp.Database.Entities;
 
 import junit.framework.TestCase;
 
+/**
+ * @author Jason Smevog
+ */
+
 public class ReviewTest extends TestCase {
 
     private Review review;
