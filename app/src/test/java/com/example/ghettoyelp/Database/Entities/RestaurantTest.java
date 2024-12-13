@@ -1,19 +1,17 @@
 package com.example.ghettoyelp.Database.Entities;
 
-import static org.junit.Assert.assertEquals;
-
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author yusraashar
  * Unit tests for the Restaurant entity class.
  */
-public class RestaurantTest  {
+public class RestaurantTest {
 
-   private Restaurant restaurant;
+    private Restaurant restaurant;
 
     /**
      * Set up a new Restaurant object before each test.
@@ -30,6 +28,8 @@ public class RestaurantTest  {
     public void testSetId() {
         restaurant.setId(1);
         assertEquals(1, restaurant.getId());
+        restaurant.setId(100);
+        assertEquals(100, restaurant.getId());
     }
 
     /**
@@ -37,19 +37,10 @@ public class RestaurantTest  {
      */
     @Test
     public void testSetName() {
-        String name = "Test Restaurant";
-        restaurant.setName(name);
-        assertEquals(name, restaurant.getName());
-    }
-
-    /**
-     * Test setting and getting the rating of a restaurant.
-     */
-    @Test
-    public void testSetRating() {
-        double rating = 4.5;
-        restaurant.setRating(rating);
-        assertEquals(rating, restaurant.getRating(), 0.0);
+        restaurant.setName("McDonald's");
+        assertEquals("McDonald's", restaurant.getName());
+        restaurant.setName("Burger King");
+        assertEquals("Burger King", restaurant.getName());
     }
 
     /**
@@ -57,13 +48,25 @@ public class RestaurantTest  {
      */
     @Test
     public void testSetDescription() {
-        String description = "A cozy place to dine.";
-        restaurant.setDescription(description);
-        assertEquals(description, restaurant.getDescription());
+        restaurant.setDescription("Fast food chain");
+        assertEquals("Fast food chain", restaurant.getDescription());
+        restaurant.setDescription("Home of the Whopper");
+        assertEquals("Home of the Whopper", restaurant.getDescription());
     }
 
     /**
-     * Test the default values of a new Restaurant object.
+     * Test setting and getting the rating of a restaurant.
+     */
+    @Test
+    public void testSetRating() {
+        restaurant.setRating(8.5);
+        assertEquals(8.5, restaurant.getRating(), 0.0);
+        restaurant.setRating(9.9);
+        assertEquals(9.9, restaurant.getRating(), 0.0);
+    }
+
+    /**
+     * Test default values for a new Restaurant object.
      */
     @Test
     public void testDefaultValues() {
