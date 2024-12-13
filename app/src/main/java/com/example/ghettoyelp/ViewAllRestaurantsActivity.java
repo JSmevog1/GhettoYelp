@@ -1,5 +1,7 @@
 package com.example.ghettoyelp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ public class ViewAllRestaurantsActivity extends AppCompatActivity {
     // ViewModel for database interaction
     private RestaurantViewModel restaurantViewModel;
 
+
     /**
      * Initializes the activity and sets up the RecyclerView, ViewModel, and LiveData observers.
      *
@@ -37,7 +40,6 @@ public class ViewAllRestaurantsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_restaurants);
-
         // Bind RecyclerView from the layout
         restaurantRecyclerView = findViewById(R.id.restaurantRecyclerView);
         restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -80,5 +82,9 @@ public class ViewAllRestaurantsActivity extends AppCompatActivity {
      */
     private void updateRestaurantList(List<Restaurant> restaurants) {
         restaurantAdapter.setRestaurants(restaurants);
+    }
+
+    static Intent ViewAllRestaurantIntentFactory(Context context){
+        return new Intent(context, ViewAllRestaurantsActivity.class);
     }
 }

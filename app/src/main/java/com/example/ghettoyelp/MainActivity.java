@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,9 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.ghettoyelp.Database.Entities.User;
-import com.example.ghettoyelp.Database.MainDatabase;
-import com.example.ghettoyelp.Database.RestaurantRepository;
-import com.example.ghettoyelp.Database.ReviewsRepository;
 import com.example.ghettoyelp.Database.UserRepository;
 import com.example.ghettoyelp.databinding.ActivityMainBinding;
 
@@ -63,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.addRemoveRestaurantsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addRemoveRestaurants();
+            }
+        });
+
         binding.logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,11 +106,12 @@ public class MainActivity extends AppCompatActivity {
             binding.AdminViewAllUsersButton.setVisibility(View.VISIBLE);
             binding.AdminViewAllUsersButton.setOnClickListener(v -> adminViewAllUsers());
 
-            binding.AdminAddRemoveRestaurantsButton.setVisibility(View.VISIBLE);
-            binding.AdminAddRemoveRestaurantsButton.setOnClickListener(v -> adminAddRemoveRestaurants());
+            binding.viewAllRestaurants.setVisibility(View.VISIBLE);
+            binding.viewAllRestaurants.setOnClickListener(v -> goToViewAllRestaurantsPage());
+
         } else {
+            binding.viewAllRestaurants.setVisibility(View.GONE);
             binding.AdminViewAllUsersButton.setVisibility(View.GONE);
-            binding.AdminAddRemoveRestaurantsButton.setVisibility(View.GONE);
         }
     }
 
@@ -195,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
         return intent;
     }
 
-    //todo: implement these functions once the pages have been created
     private void goToAddReviewsPage() {
         Intent intent = AddReviewActivity.AddReviewIntentFactory(getApplicationContext());
         intent.putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
@@ -204,6 +207,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToPreviousReviewsPage() {
         Intent intent = ViewAllReviewsActivity.ViewAllReviewsIntentFactory(getApplicationContext());
+        intent.putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
+        startActivity(intent);
+    }
+
+    private void goToViewAllRestaurantsPage(){
+        Intent intent = ViewAllRestaurantsActivity.ViewAllRestaurantIntentFactory(getApplicationContext());
         intent.putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
         startActivity(intent);
     }
@@ -233,7 +242,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(ViewAllUsersActivity.ViewAllUsersIntentFactory(getApplicationContext()).putExtra(MAIN_ACTIVITY_USER_ID,loggedInUserId));
     }
 
-    private void adminAddRemoveRestaurants(){
+    private void addRemoveRestaurants(){
         startActivity(AddRestaurantActivity.AddRestaurantIntentFactory(getApplicationContext()));
     }
+
 }

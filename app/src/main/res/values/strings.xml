@@ -27,4 +27,6 @@
     <string name="manage_reviews">Manage Reviews</string>
     <string name="remove">Remove</string>
     <string name="view_all_reviews">View all Reviews</string>
+    <string name="view_all_restaurants">View All Restaurants</string>
+    <string name="add_restaurants">Add Restaurants</string>
 </resources>
